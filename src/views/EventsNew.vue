@@ -30,7 +30,7 @@
         <input type="text" class="form-control" v-model="newEventTicketsUrl">
       </div>
       <div class="form-group">
-        <label>Event Tags:</label>
+        <label>Event Tags (array):</label>
         <input type="text" class="form-control" v-model="newEventTags">
       </div>
       <div class="form-group">

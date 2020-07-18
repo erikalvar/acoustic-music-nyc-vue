@@ -8,8 +8,12 @@
     <p>Description: {{ currentEvent.description }}</p>
     <p>{{ currentEvent.image_url }}</p>
     <p>Tickets: {{ currentEvent.tickets_url }}</p>
-
-   
+    <!-- <div v-for="tag in tags">
+      <p>Tags: {{ tag }}</p>
+    </div> -->
+    <div>
+      <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
+    </div>
 
   </div>
 </template>
@@ -24,6 +28,7 @@ export default {
     return {
       message: "Welcome to Events Show",
       currentEvent: {}
+      // tags: this.currentEvent.tags
     };
   },
   created: function() {
