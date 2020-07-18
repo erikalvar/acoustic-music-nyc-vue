@@ -44,7 +44,7 @@ const routes = [
     component: EventsIndex
   },
   {
-    path: '/events',
+    path: '/events/new',
     name: 'events-new',
     component: EventsNew
   },

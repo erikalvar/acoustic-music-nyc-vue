@@ -2,6 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import axios from "axios";
+import { Datetime } from 'vue-datetime';
+import 'vue-datetime/dist/vue-datetime.css';
+
+Vue.use(Datetime);
+Vue.component('datetime', Datetime);
 
 axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 
