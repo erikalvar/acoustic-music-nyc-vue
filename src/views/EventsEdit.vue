@@ -41,7 +41,8 @@
         <label>End Time:</label>
         <datetime type="datetime" v-model="event.end_time" use12-hour></datetime>
       </div>
-      <input type="submit" class="btn btn-primary" value="Submit" />
+      <input type="submit" class="btn btn-primary" value="Submit" /> <br>
+      <button v-on:click="destroyEvent()">Delete Event</button>
     </form>
 
   </div>
@@ -88,6 +89,14 @@ export default {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
+    },
+    destroyEvent: function() {
+      if (confirm("Are you sure you want to delete event?")) {
+        axios.delete(`/api/events/${this.event.id}`).then(response => {
+          console.log("Event successfully deleted", response.data);
+          this.$router.push("/events");
+        });
+      }
     }
   }
 };
