@@ -7,7 +7,8 @@
       <router-link to="/events/new">Submit Event</router-link> |
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link>
+      <router-link to="/logout">Logout</router-link> |
+      <router-link to="/users/:id">User Info</router-link>
     </div>
     <router-view/>
   </div>

@@ -9,7 +9,7 @@ import EventsIndex from "../views/EventsIndex.vue";
 import EventsNew from "../views/EventsNew.vue";
 import EventsShow from "../views/EventsShow.vue";
 import EventsEdit from "../views/EventsEdit.vue";
-import TagBoxTest from "../views/TagBoxTest.vue";
+import UsersShow from "../views/UsersShow.vue";
 
 Vue.use(VueRouter);
 
@@ -61,9 +61,9 @@ const routes = [
     component: EventsEdit
   },
   {
-    path: '/tagboxtest',
-    name: 'tagboxtest',
-    component: TagBoxTest
+    path: '/users/:id',
+    name: 'users-edit',
+    component: UsersShow
   },
 ];
 

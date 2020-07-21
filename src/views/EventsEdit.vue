@@ -30,10 +30,6 @@
         <input type="text" class="form-control" v-model="event.tickets_url">
       </div>
       <div class="form-group">
-        <label>Event Tags (array):</label>
-        <input type="text" class="form-control" v-model="event.tag_ids">
-      </div>
-      <div class="form-group">
         <label>Start Time:</label>
         <datetime type="datetime" v-model="event.start_time" use12-hour></datetime>
       </div>
@@ -44,6 +40,15 @@
       <input type="submit" class="btn btn-primary" value="Submit" /> <br>
       <button v-on:click="destroyEvent()">Delete Event</button>
     </form>
+
+    <br>
+    <!-- tags box -->
+    <div v-for="tag in tags">
+      <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTagsIds">
+      <label for="tag">{{ tag.name }}</label>
+    </div>
+    <span>Checked tag ids: {{ selectedTagsIds }}</span>
+
 
   </div>
 </template>
@@ -58,31 +63,37 @@ export default {
     return {
       errors: [],
       event: {},
-      allTags: {}
+      tags: [],
+      selectedTagsIds: []
     };
   },
   created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then(response => {
       this.event = response.data;
       console.log(this.event);
+      this.selectedTagsIds = this.event.tags.map(tag => tag.id);
+    });
+    axios.get("/api/tags").then(response => {
+      this.tags = response.data;
+      console.log(this.tags);
     });
   },
   methods: {
     editEvent: function() {
       var params = {
         errors: [],
-        title: this.title,
-        description: this.description,
-        venue: this.venue,
-        venue_address: this.venue_address,
-        image_url: this.image_url,
-        tickets_url: this.tickets_url,
-        start_time: this.start_time,
-        end_time: this.end_time,
-        tag_ids: this.tag_ids
+        title: this.event.title,
+        description: this.event.description,
+        venue: this.event.venue,
+        venue_address: this.event.venue_address,
+        image_url: this.event.image_url,
+        tickets_url: this.event.tickets_url,
+        start_time: this.event.start_time,
+        end_time: this.event.end_time,
+        tag_ids: this.selectedTagsIds
       };
       axios
-        .patch(`/api/events/${this.event.id}`)
+        .patch(`/api/events/${this.event.id}`, params)
         .then(response => {
           this.$router.push(`/events/${response.data.id}`);
         })

@@ -41,7 +41,7 @@
     </form>
 
     <br>
-
+    <!-- tags box -->
     <div v-for="tag in tags">
       <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
       <label for="tag">{{ tag.name }}</label>

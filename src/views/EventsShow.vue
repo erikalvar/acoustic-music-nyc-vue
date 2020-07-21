@@ -8,14 +8,13 @@
     <p>Description: {{ currentEvent.description }}</p>
     <p>{{ currentEvent.image_url }}</p>
     <p>Tickets: {{ currentEvent.tickets_url }}</p>
-    <!-- <div v-for="tag in tags">
-      <p>Tags: {{ tag }}</p>
-    </div> -->
     <div>
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
 
-    <div>{{ allTags }}</div>
+    <div>
+      <p>{{ currentEvent.tags }}</p>
+    </div>
 
   </div>
 </template>
@@ -29,18 +28,13 @@ export default {
   data: function() {
     return {
       message: "Welcome to Events Show",
-      currentEvent: {},
-      allTags: []
+      currentEvent: {}
     };
   },
   created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then(response => {
       console.log(response.data);
       this.currentEvent = response.data;
-    });
-    axios.get("/api/tags").then(response => {
-      this.allTags = response.data;
-      console.log(this.allTags);
     });
   },
   methods: {}
