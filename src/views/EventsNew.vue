@@ -30,10 +30,6 @@
         <input type="text" class="form-control" v-model="newEventTicketsUrl">
       </div>
       <div class="form-group">
-        <label>Event Tags (array):</label>
-        <input type="text" class="form-control" v-model="newEventTags">
-      </div>
-      <div class="form-group">
         <label>Start Time:</label>
         <datetime type="datetime" v-model="newEventStartTime" use12-hour></datetime>
       </div>
@@ -43,6 +39,15 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
+
+    <br>
+
+    <div v-for="tag in tags">
+      <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
+      <label for="tag">{{ tag.name }}</label>
+    </div>
+    <span>Checked names: {{ selectedTags }}</span>
+    
 
   </div>
 </template>
@@ -65,10 +70,16 @@ export default {
       newEventTicketsUrl: "",
       newEventStartTime: "",
       newEventEndTime: "",
-      newEventTags: ""
+      tags: [],
+      selectedTags: []
     };
   },
-  created: function() {},
+  created: function() {
+    axios.get("/api/tags").then(response => {
+      this.tags = response.data;
+      console.log(this.tags);
+    });
+  },
   methods: {
     createEvent: function() {
       var params = {
@@ -80,7 +91,7 @@ export default {
         tickets_url: this.newEventTicketsUrl,
         start_time: this.newEventStartTime,
         end_time: this.newEventEndTime,
-        tag_ids: this.newEventTags
+        tag_ids: this.selectedTags
       };
       axios
         .post("/api/events", params)

@@ -57,7 +57,8 @@ export default {
   data: function() {
     return {
       errors: [],
-      event: {}
+      event: {},
+      allTags: {}
     };
   },
   created: function() {

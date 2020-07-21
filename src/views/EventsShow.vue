@@ -15,6 +15,8 @@
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
 
+    <div>{{ allTags }}</div>
+
   </div>
 </template>
 
@@ -27,14 +29,18 @@ export default {
   data: function() {
     return {
       message: "Welcome to Events Show",
-      currentEvent: {}
-      // tags: this.currentEvent.tags
+      currentEvent: {},
+      allTags: []
     };
   },
   created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then(response => {
       console.log(response.data);
       this.currentEvent = response.data;
+    });
+    axios.get("/api/tags").then(response => {
+      this.allTags = response.data;
+      console.log(this.allTags);
     });
   },
   methods: {}
