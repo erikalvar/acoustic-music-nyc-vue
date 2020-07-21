@@ -10,6 +10,7 @@ import EventsNew from "../views/EventsNew.vue";
 import EventsShow from "../views/EventsShow.vue";
 import EventsEdit from "../views/EventsEdit.vue";
 import UsersShow from "../views/UsersShow.vue";
+import UsersEdit from "../views/UsersEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -62,8 +63,13 @@ const routes = [
   },
   {
     path: '/users/:id',
-    name: 'users-edit',
+    name: 'users-show',
     component: UsersShow
+  },
+  {
+    path: '/users/:id/edit',
+    name: 'users-edit',
+    component: UsersEdit
   },
 ];
 
