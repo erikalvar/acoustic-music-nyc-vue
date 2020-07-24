@@ -2,7 +2,11 @@
   <div class="events-index">
     <h1>{{ message }}</h1>
 
-    <div v-for="event in events">
+    <div>
+      <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
+    </div>
+
+    <div v-for="event in filterBy(events, titleFilter)">
       <h3>{{ event.title }}</h3>
       <p>{{ event.start_time }}</p>
       <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
@@ -16,19 +20,22 @@
 
 <script>
 import axios from "axios";
+import Vue2Filters from "vue2-filters";
 export default {
-  data: function() {
+  mixins: [Vue2Filters.mixin],
+  data: function () {
     return {
       message: "Welcome to Events",
-      events: []
+      events: [],
+      titleFilter: "",
     };
   },
-  created: function() {
-    axios.get("/api/events").then(response => {
+  created: function () {
+    axios.get("/api/events").then((response) => {
       console.log("All Events:", response.data);
       this.events = response.data;
     });
   },
-  methods: {}
+  methods: {},
 };
 </script>

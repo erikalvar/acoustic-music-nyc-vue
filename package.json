@@ -13,6 +13,7 @@
     "vue": "^2.6.11",
     "vue-datetime": "^1.0.0-beta.13",
     "vue-router": "^3.2.0",
+    "vue2-filters": "^0.11.0",
     "weekstart": "^1.0.1"
   },
   "devDependencies": {
