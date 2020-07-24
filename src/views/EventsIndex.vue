@@ -6,6 +6,12 @@
       <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
     </div>
 
+    <div v-for="tag in tags">
+      <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
+      <label for="tag">{{ tag.name }}</label>
+    </div>
+    <span>Checked Tags: {{ selectedTags }}</span>
+
     <div v-for="event in filterBy(events, titleFilter)">
       <h3>{{ event.title }}</h3>
       <p>{{ event.start_time }}</p>
@@ -28,12 +34,18 @@ export default {
       message: "Welcome to Events",
       events: [],
       titleFilter: "",
+      tags: [],
+      selectedTags: [],
     };
   },
   created: function () {
     axios.get("/api/events").then((response) => {
       console.log("All Events:", response.data);
       this.events = response.data;
+    });
+    axios.get("/api/tags").then((response) => {
+      this.tags = response.data;
+      console.log(this.tags);
     });
   },
   methods: {},
