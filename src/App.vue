@@ -8,7 +8,9 @@
       <router-link v-if="!isLoggedIn()" to="/signup">Signup</router-link> |
       <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> |
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link> |
-      <router-link v-if="isLoggedIn()" to="/users/:id">User Profile</router-link>
+      <!-- <router-link v-if="isLoggedIn()" to="/users/:id">User Profile</router-link> -->
+      <router-link v-bind:to="`/users/${getUserId()}`">User Profile</router-link>
+
     </div>
     <router-view/>
   </div>
@@ -39,15 +41,19 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
-      flashMessage: ""
+      flashMessage: "",
+      userId: "",
     };
   },
   methods: {
-    isLoggedIn: function() {
+    isLoggedIn: function () {
       return localStorage.getItem("jwt");
-    }
-  }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
+  },
 };
 </script>
