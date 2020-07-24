@@ -14,7 +14,8 @@
 
     <div v-for="event in filterBy(events, titleFilter)">
       <h3>{{ event.title }}</h3>
-      <p>{{ event.start_time }}</p>
+      <p>@{{ event.venue }}</p>
+      <p>{{ cleanTime(event.start_time) }}</p>
       <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
     </div>
 
@@ -27,6 +28,7 @@
 <script>
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
+import moment from "moment";
 export default {
   mixins: [Vue2Filters.mixin],
   data: function () {
@@ -48,6 +50,10 @@ export default {
       console.log(this.tags);
     });
   },
-  methods: {},
+  methods: {
+    cleanTime: function (dateTime) {
+      return moment(dateTime).format("dddd, MMMM Do h:mm A");
+    },
+  },
 };
 </script>
