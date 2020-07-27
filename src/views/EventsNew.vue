@@ -44,7 +44,7 @@
     <!-- tags box -->
     <div v-for="tag in tags">
       <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
-      <label for="tag">{{ tag.name }}</label>
+      <label for="tag">#{{ tag.name }}</label>
     </div>
     <span>Checked names: {{ selectedTags }}</span>
     
@@ -58,7 +58,7 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       errors: [],
       events: [],
@@ -71,17 +71,17 @@ export default {
       newEventStartTime: "",
       newEventEndTime: "",
       tags: [],
-      selectedTags: []
+      selectedTags: [],
     };
   },
-  created: function() {
-    axios.get("/api/tags").then(response => {
+  created: function () {
+    axios.get("/api/tags").then((response) => {
       this.tags = response.data;
       console.log(this.tags);
     });
   },
   methods: {
-    createEvent: function() {
+    createEvent: function () {
       var params = {
         title: this.newEventTitle,
         description: this.newEventDescription,
@@ -91,22 +91,22 @@ export default {
         tickets_url: this.newEventTicketsUrl,
         start_time: this.newEventStartTime,
         end_time: this.newEventEndTime,
-        tag_ids: this.selectedTags
+        tag_ids: this.selectedTags,
       };
       axios
         .post("/api/events", params)
-        .then(response => {
+        .then((response) => {
           console.log("Successfully added", response.data);
           this.events.push(response.data);
         })
-        .then(response => {
+        .then((response) => {
           this.$router.push("/events");
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
-    }
-  }
+    },
+  },
 };
 </script>

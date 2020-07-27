@@ -45,7 +45,7 @@
     <!-- tags box -->
     <div v-for="tag in tags">
       <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTagsIds">
-      <label for="tag">{{ tag.name }}</label>
+      <label for="tag">#{{ tag.name }}</label>
     </div>
     <span>Checked tag ids: {{ selectedTagsIds }}</span>
 
@@ -59,27 +59,27 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       errors: [],
       event: {},
       tags: [],
-      selectedTagsIds: []
+      selectedTagsIds: [],
     };
   },
-  created: function() {
-    axios.get(`/api/events/${this.$route.params.id}`).then(response => {
+  created: function () {
+    axios.get(`/api/events/${this.$route.params.id}`).then((response) => {
       this.event = response.data;
       console.log(this.event);
-      this.selectedTagsIds = this.event.tags.map(tag => tag.id);
+      this.selectedTagsIds = this.event.tags.map((tag) => tag.id);
     });
-    axios.get("/api/tags").then(response => {
+    axios.get("/api/tags").then((response) => {
       this.tags = response.data;
       console.log(this.tags);
     });
   },
   methods: {
-    editEvent: function() {
+    editEvent: function () {
       var params = {
         errors: [],
         title: this.event.title,
@@ -90,26 +90,26 @@ export default {
         tickets_url: this.event.tickets_url,
         start_time: this.event.start_time,
         end_time: this.event.end_time,
-        tag_ids: this.selectedTagsIds
+        tag_ids: this.selectedTagsIds,
       };
       axios
         .patch(`/api/events/${this.event.id}`, params)
-        .then(response => {
+        .then((response) => {
           this.$router.push(`/events/${response.data.id}`);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
-    destroyEvent: function() {
+    destroyEvent: function () {
       if (confirm("Are you sure you want to delete event?")) {
-        axios.delete(`/api/events/${this.event.id}`).then(response => {
+        axios.delete(`/api/events/${this.event.id}`).then((response) => {
           console.log("Event successfully deleted", response.data);
           this.$router.push("/events");
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>

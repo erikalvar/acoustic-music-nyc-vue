@@ -1,18 +1,19 @@
 <template>
   <div class="events-index">
-    <h1>{{ message }}</h1>
+    <h1>Acoustic Music NYC</h1>
 
     <div>
       <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
     </div>
 
     <div v-for="tag in tags">
-      <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
-      <label for="tag">{{ tag.name }}</label>
+      <input type="checkbox" id="tag.id" :value="tag.id" v-model="selectedTags">
+      <label for="tag">#{{ tag.name }}</label>
     </div>
     <span>Checked Tags: {{ selectedTags }}</span>
 
     <div v-for="event in filterBy(events, titleFilter)">
+    <!-- <div v-for="event in filteredByTag"> -->
       <h3>{{ event.title }}</h3>
       <p>@{{ event.venue }}</p>
       <p>{{ cleanTime(event.start_time) }}</p>
@@ -33,12 +34,16 @@ export default {
   mixins: [Vue2Filters.mixin],
   data: function () {
     return {
-      message: "Welcome to Events",
       events: [],
       titleFilter: "",
       tags: [],
       selectedTags: [],
     };
+  },
+  computed: {
+    filteredByTag() {
+      return getByTag(this.events, this.selectedTags);
+    },
   },
   created: function () {
     axios.get("/api/events").then((response) => {
@@ -53,6 +58,12 @@ export default {
   methods: {
     cleanTime: function (dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
+    },
+    getByTag: function (events, selectedTags) {
+      if (!selectedTags) {
+        return events;
+      }
+      return events.filter((event) => event.selectedTags === selectedTags);
     },
   },
 };

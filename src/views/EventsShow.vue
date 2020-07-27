@@ -14,7 +14,7 @@
 
     <h3>Tags:</h3>
     <div v-for="tag in tags">
-      <p>{{ tag.name }}</p>
+      <p>#{{ tag.name }}</p>
     </div>
 
   </div>
