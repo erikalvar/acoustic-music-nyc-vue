@@ -7,13 +7,13 @@
     </div>
 
     <div v-for="tag in tags">
-      <input type="checkbox" id="tag.id" :value="tag.id" v-model="selectedTags">
+      <input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
       <label for="tag">#{{ tag.name }}</label>
     </div>
     <span>Checked Tags: {{ selectedTags }}</span>
 
-    <div v-for="event in filterBy(events, titleFilter)">
-    <!-- <div v-for="event in filteredByTag"> -->
+    <!-- <div v-for="event in filterBy(events, titleFilter)"> -->
+    <div v-for="event in filterBy(filteredByTag, titleFilter)">
       <h3>{{ event.title }}</h3>
       <p>@{{ event.venue }}</p>
       <p>{{ cleanTime(event.start_time) }}</p>
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     filteredByTag() {
-      return getByTag(this.events, this.selectedTags);
+      return this.getByTag(this.events, this.selectedTags);
     },
   },
   created: function () {
@@ -60,10 +60,14 @@ export default {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
     getByTag: function (events, selectedTags) {
-      if (!selectedTags) {
+      console.log("selectedTags", selectedTags);
+      if (selectedTags.length === 0) {
         return events;
       }
-      return events.filter((event) => event.selectedTags === selectedTags);
+      selectedTags.forEach((tag) => {
+        events = this.filterBy(events, tag.name);
+      });
+      return events;
     },
   },
 };

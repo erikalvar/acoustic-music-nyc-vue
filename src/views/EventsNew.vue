@@ -46,7 +46,7 @@
       <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
       <label for="tag">#{{ tag.name }}</label>
     </div>
-    <span>Checked names: {{ selectedTags }}</span>
+    <!-- <span>Checked names: {{ selectedTags }}</span> -->
     
 
   </div>
