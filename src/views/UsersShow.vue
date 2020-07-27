@@ -8,7 +8,7 @@
     </div>
 
     <div>
-      <router-link v-if="user.moderator==true" to="/events/appove">Approve Events</router-link>      
+      <router-link v-if="user.moderator==true" to="/events/approve">Approve Events</router-link>      
     </div>
 
 

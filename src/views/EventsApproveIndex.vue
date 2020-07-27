@@ -14,10 +14,24 @@
 
     <!-- <div v-for="event in filterBy(events, titleFilter)"> -->
     <div v-for="event in filterBy(filteredByTag, titleFilter)">
-      <h3>{{ event.title }}</h3>
-      <p>@{{ event.venue }}</p>
-      <p>{{ cleanTime(event.start_time) }}</p>
-      <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
+      
+      <h1>{{ event.title }}</h1>
+      <p>Venue: {{ event.venue }}</p>
+      <p>Venue Address: {{ event.venue_address }}</p>
+      <p>Start: {{ cleanTime(event.start_time) }}</p>
+      <p>End: {{ cleanTime(event.end_time) }}</p>
+      <p>Description: {{ event.description }}</p>
+      <img v-bind:src="`${event.image_url}`">
+      <p>Tickets: {{ event.tickets_url }}</p>
+
+      <h3>Tags:</h3>
+      <p>{{ event.tags }}</p>
+
+      <div>
+        <router-link :to="`/events/${event.id}/edit`">Edit</router-link>
+      </div>
+        <button v-on:click="approveEvent(event)">Approve Event</button>      
+      
     </div>
 
   </div>
@@ -47,8 +61,8 @@ export default {
   },
   created: function () {
     axios.get("/api/events").then((response) => {
-      console.log("All Events:", response.data);
-      this.events = response.data;
+      this.events = this.filterBy(response.data, 0, "moderator_id");
+      console.log("Pending Events:", this.events);
     });
     axios.get("/api/tags").then((response) => {
       this.tags = response.data;
@@ -68,6 +82,20 @@ export default {
         events = this.filterBy(events, tag.name);
       });
       return events;
+    },
+    approveEvent: function (event) {
+      var params = {
+        approved: true,
+      };
+      axios
+        .patch(`/api/events/${event.id}`, params)
+        .then((response) => {
+          this.events.splice(this.events.indexOf(event), 1);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

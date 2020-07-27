@@ -14,10 +14,13 @@
 
     <!-- <div v-for="event in filterBy(events, titleFilter)"> -->
     <div v-for="event in filterBy(filteredByTag, titleFilter)">
-      <h3>{{ event.title }}</h3>
-      <p>@{{ event.venue }}</p>
-      <p>{{ cleanTime(event.start_time) }}</p>
-      <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
+      <div v-if="event.moderator_id">
+        <h3>{{ event.title }}</h3>
+        <p>@{{ event.venue }}</p>
+        <p>{{ cleanTime(event.start_time) }}</p>
+        <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
+      </div>
+      
     </div>
 
   </div>
