@@ -1,5 +1,5 @@
 <template>
-  <div class="events-index">
+  <div class="events-approve-index">
     <h1>Acoustic Music NYC</h1>
 
     <div>

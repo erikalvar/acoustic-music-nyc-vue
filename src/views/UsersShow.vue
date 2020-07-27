@@ -7,6 +7,10 @@
       <router-link :to="`/users/${user.id}/edit`">Edit Profile</router-link>
     </div>
 
+    <div>
+      <router-link v-if="user.moderator==true" to="/events/appove">Approve Events</router-link>      
+    </div>
+
 
   </div>
 </template>
@@ -17,18 +21,18 @@
 <script>
 import axios from "axios";
 export default {
-  data: function() {
+  data: function () {
     return {
       message: "Welcome to Events Show",
-      user: {}
+      user: {},
     };
   },
-  created: function() {
-    axios.get(`/api/users/${this.$route.params.id}`).then(response => {
+  created: function () {
+    axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.user = response.data;
     });
   },
-  methods: {}
+  methods: {},
 };
 </script>

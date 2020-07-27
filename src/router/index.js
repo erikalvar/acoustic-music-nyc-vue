@@ -6,6 +6,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import EventsIndex from "../views/EventsIndex.vue";
+import EventsApproveIndex from "../views/EventsApproveIndex.vue";
 import EventsNew from "../views/EventsNew.vue";
 import EventsShow from "../views/EventsShow.vue";
 import EventsEdit from "../views/EventsEdit.vue";
@@ -45,6 +46,11 @@ const routes = [
     path: '/',
     name: 'events-index',
     component: EventsIndex
+  },
+  {
+    path: '/events/approve',
+    name: 'events-approve-index',
+    component: EventsApproveIndex
   },
   {
     path: '/events/new',
