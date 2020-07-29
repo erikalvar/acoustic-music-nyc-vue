@@ -106,7 +106,7 @@ export default {
       if (confirm("Are you sure you want to delete event?")) {
         axios.delete(`/api/events/${this.event.id}`).then((response) => {
           console.log("Event successfully deleted", response.data);
-          this.$router.push("/events");
+          this.$router.push("/");
         });
       }
     },

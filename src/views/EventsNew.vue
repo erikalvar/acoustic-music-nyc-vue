@@ -1,5 +1,6 @@
 <template>
   <div class="events-new">
+
     <form v-on:submit.prevent="createEvent">
       <h1>Submit an Event</h1>
       <ul>
@@ -19,7 +20,13 @@
       </div>
       <div class="form-group">
         <label>Venue Address:</label>
-        <input type="text" class="form-control" v-model="newEventVenueAddress">
+        <!-- <input ref="autocomplete" placeholder="" class="search-location" onfocus="value = " type="text" /> -->
+        <input ref="autocomplete" 
+        placeholder="Search" 
+        class="search-location"
+        onfocus="value = ''" 
+        type="text" />
+        <!-- <input type="text" class="form-control" v-model="newEventVenueAddress"> -->
       </div>
       <div class="form-group">
         <label>Image Url:</label>
@@ -65,19 +72,31 @@ export default {
       newEventTitle: "",
       newEventDescription: "",
       newEventVenue: "",
-      newEventVenueAddress: "",
+      newEventVenueAddress: this.place,
       newEventImageUrl: "",
       newEventTicketsUrl: "",
       newEventStartTime: "",
       newEventEndTime: "",
       tags: [],
       selectedTags: [],
+      place: "",
     };
   },
   created: function () {
     axios.get("/api/tags").then((response) => {
       this.tags = response.data;
-      console.log(this.tags);
+      // console.log(this.tags);
+    });
+  },
+  mounted() {
+    this.autocomplete = new google.maps.places.Autocomplete(
+      this.$refs.autocomplete,
+      { types: ["geocode"] }
+    );
+    this.autocomplete.addListener("place_changed", () => {
+      let place = this.autocomplete.getPlace().formatted_address;
+      this.place = place;
+      console.log(place);
     });
   },
   methods: {
@@ -86,7 +105,7 @@ export default {
         title: this.newEventTitle,
         description: this.newEventDescription,
         venue: this.newEventVenue,
-        venue_address: this.newEventVenueAddress,
+        venue_address: this.place,
         image_url: this.newEventImageUrl,
         tickets_url: this.newEventTicketsUrl,
         start_time: this.newEventStartTime,
@@ -100,12 +119,15 @@ export default {
           this.events.push(response.data);
         })
         .then((response) => {
-          this.$router.push("/events");
+          this.$router.push("/");
         })
         .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
+    },
+    handleInput: function (input) {
+      this.newEventVenueAddress = input;
     },
   },
 };

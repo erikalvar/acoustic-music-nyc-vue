@@ -30,7 +30,8 @@
       <div>
         <router-link :to="`/events/${event.id}/edit`">Edit</router-link>
       </div>
-        <button v-on:click="approveEvent(event)">Approve Event</button>      
+        <button v-on:click="approveEvent(event)">Approve Event</button>  <br>
+        <button v-on:click="destroyEvent(event)">Delete Event</button>    
       
     </div>
 
@@ -96,6 +97,14 @@ export default {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
+    },
+    destroyEvent: function (event) {
+      if (confirm("Are you sure you want to delete event?")) {
+        axios.delete(`/api/events/${event.id}`).then((response) => {
+          console.log("Event successfully deleted", response.data);
+          this.events.splice(this.events.indexOf(event), 1);
+        });
+      }
     },
   },
 };

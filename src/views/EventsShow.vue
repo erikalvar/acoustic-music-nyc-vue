@@ -17,6 +17,9 @@
       <p>#{{ tag.name }}</p>
     </div>
 
+    <static-map :google-api-key="apiKey" :format="format" :markers="markers" :zoom="zoom" :center="center" :size="size" :type="type" :paths="paths" :language="language"></static-map>
+
+
   </div>
 </template>
 
@@ -26,12 +29,33 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+import StaticMap from "vue-static-map";
 export default {
+  components: {
+    StaticMap,
+  },
   data: function () {
     return {
       message: "Welcome to Events Show",
       currentEvent: {},
+      address: "",
       tags: [],
+      apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
+      zoom: 11,
+      center: "Elmhurst,Queens,NY",
+      format: "gif",
+      language: "en",
+      markers: [
+        {
+          label: "♫",
+          color: "blue",
+          lat: 40.702147,
+          lng: -74.015794,
+          size: "normal",
+        },
+      ],
+      type: "roadmap",
+      size: [600, 800],
     };
   },
   created: function () {
@@ -39,6 +63,7 @@ export default {
       console.log(response.data);
       this.currentEvent = response.data;
       this.tags = response.data.tags;
+      this.address = response.formatted_address;
       console.log(this.tags);
     });
   },
