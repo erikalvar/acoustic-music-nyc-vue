@@ -17,9 +17,6 @@
       <p>#{{ tag.name }}</p>
     </div>
 
-    <static-map :google-api-key="apiKey" :format="format" :markers="markers" :zoom="zoom" :center="center" :size="size" :type="type" :paths="paths" :language="language"></static-map>
-
-
   </div>
 </template>
 
@@ -40,22 +37,6 @@ export default {
       currentEvent: {},
       address: "",
       tags: [],
-      apiKey: process.env.VUE_APP_GOOGLE_API_KEY,
-      zoom: 11,
-      center: "Elmhurst,Queens,NY",
-      format: "gif",
-      language: "en",
-      markers: [
-        {
-          label: "♫",
-          color: "blue",
-          lat: 40.702147,
-          lng: -74.015794,
-          size: "normal",
-        },
-      ],
-      type: "roadmap",
-      size: [600, 800],
     };
   },
   created: function () {
