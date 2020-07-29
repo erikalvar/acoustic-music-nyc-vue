@@ -3,26 +3,26 @@
 
     <form v-on:submit.prevent="createEvent">
       <h1>Submit an Event</h1>
+      <p>Once an event is created it will be sent to moderators for approval. Only after it is approved will it show up on the home page.</p>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
       </ul>
       <div class="form-group">
         <label>Title:</label>
-        <input type="text" class="form-control" v-model="newEventTitle">
+        <input type="text" class="form-control" v-model="newEventTitle" placeholder="band name, event name, etc.">
       </div>
       <div class="form-group">
         <label>Description:</label>
-        <textarea v-model="newEventDescription" ></textarea>
+        <textarea v-model="newEventDescription" placeholder="Add a couple sentences about the event/band"></textarea>
       </div>
       <div class="form-group">
         <label>Venue:</label>
-        <input type="text" class="form-control" v-model="newEventVenue">
+        <input type="text" class="form-control" v-model="newEventVenue" placeholder="required">
       </div>
       <div class="form-group">
         <label>Venue Address:</label>
-        <!-- <input ref="autocomplete" placeholder="" class="search-location" onfocus="value = " type="text" /> -->
         <input ref="autocomplete" 
-        placeholder="Search" 
+        placeholder="if livestream write Internet" 
         class="search-location"
         onfocus="value = ''" 
         type="text" />
@@ -30,11 +30,11 @@
       </div>
       <div class="form-group">
         <label>Image Url:</label>
-        <input type="text" class="form-control" v-model="newEventImageUrl">
+        <input type="text" class="form-control" v-model="newEventImageUrl" placeholder="optional but suggested. Square photo if possible">
       </div>
       <div class="form-group">
         <label>Tickets Url:</label>
-        <input type="text" class="form-control" v-model="newEventTicketsUrl">
+        <input type="text" class="form-control" v-model="newEventTicketsUrl" placeholder="optional">
       </div>
       <div class="form-group">
         <label>Start Time:</label>

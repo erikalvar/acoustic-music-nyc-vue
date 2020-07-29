@@ -28,9 +28,7 @@ import axios from "axios";
 import moment from "moment";
 import StaticMap from "vue-static-map";
 export default {
-  components: {
-    StaticMap,
-  },
+  components: {},
   data: function () {
     return {
       message: "Welcome to Events Show",

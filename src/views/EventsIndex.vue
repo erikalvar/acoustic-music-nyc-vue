@@ -2,6 +2,9 @@
   <div class="events-index">
     <h1>Acoustic Music NYC</h1>
 
+    
+    <v-calendar :date='date' v-model="selectedDate" :select-attribute='selectAttribute'></v-calendar>
+
     <div>
       <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
     </div>
@@ -41,6 +44,11 @@ export default {
       titleFilter: "",
       tags: [],
       selectedTags: [],
+      selectedDate: new Date(),
+      selectAttribute: {
+        highlight: true,
+      },
+      date: new Date(),
     };
   },
   computed: {
@@ -71,6 +79,9 @@ export default {
         events = this.filterBy(events, tag.name);
       });
       return events;
+    },
+    changeDate: function () {
+      console.log(this.selectedDate);
     },
   },
 };
