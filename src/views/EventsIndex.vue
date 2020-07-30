@@ -2,8 +2,14 @@
   <div class="events-index">
     <h1>Acoustic Music NYC</h1>
 
-    
-    <v-calendar :date='date' v-model="selectedDate" :select-attribute='selectAttribute'></v-calendar>
+    <v-date-picker
+    v-model="date"
+    mode="single"
+    is-inline
+    />
+
+    <button v-on:click="resetDate">Today</button>
+
 
     <div>
       <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
@@ -16,7 +22,7 @@
     <!-- <span>Checked Tags: {{ selectedTags }}</span> -->
 
     <!-- <div v-for="event in filterBy(events, titleFilter)"> -->
-    <div v-for="event in filterBy(filteredByTag, titleFilter)">
+    <div v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
       <div v-if="event.moderator_id">
         <h3>{{ event.title }}</h3>
         <p>@{{ event.venue }}</p>
@@ -36,6 +42,7 @@
 import axios from "axios";
 import Vue2Filters from "vue2-filters";
 import moment from "moment";
+import { DatePicker } from "v-calendar";
 export default {
   mixins: [Vue2Filters.mixin],
   data: function () {
@@ -49,11 +56,18 @@ export default {
         highlight: true,
       },
       date: new Date(),
+      formattedDate: "",
     };
   },
   computed: {
     filteredByTag() {
       return this.getByTag(this.events, this.selectedTags);
+    },
+  },
+  watch: {
+    date: function () {
+      this.formattedDate = moment(this.date).format("YYYY-MM-DD");
+      console.log("test");
     },
   },
   created: function () {
@@ -80,8 +94,8 @@ export default {
       });
       return events;
     },
-    changeDate: function () {
-      console.log(this.selectedDate);
+    resetDate() {
+      this.formattedDate = null;
     },
   },
 };

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Datetime } from 'vue-datetime';
 import 'vue-datetime/dist/vue-datetime.css';
 import VCalendar from 'v-calendar';
+// import "v-calendar/lib/v-calendar.min.css";
 
 Vue.use(Datetime);
 Vue.component('datetime', Datetime);
