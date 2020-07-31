@@ -18,6 +18,7 @@
         <p>{{ favorite_event.venue }}</p>
         <p>{{ cleanTime(favorite_event.start_time) }}</p>
         <router-link v-bind:to="`/events/${favorite_event.id}`">Show Info</router-link>
+        <button v-on:click="removeFavorite()">Remove Favorite</button>
       </div>
     </div>
 
@@ -50,6 +51,17 @@ export default {
   methods: {
     cleanTime: function (dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
+    },
+    removeFavorite: function (favorite) {
+      axios
+        .delete(`"/api/favorites/${favorite.id}"`)
+        .then((response) => {
+          console.log("removed favorite", response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
