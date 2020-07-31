@@ -11,6 +11,7 @@
     <div>
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
+    <button v-on:click="favoriteEvent">Favorite</button>
 
     <h3>Tags:</h3>
     <div v-for="tag in tags">
@@ -26,7 +27,8 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import StaticMap from "vue-static-map";
+// import StaticMap from "vue-static-map";
+// import func from "../../vue-temp/vue-editor-bridge";
 export default {
   components: {},
   data: function () {
@@ -35,6 +37,7 @@ export default {
       currentEvent: {},
       address: "",
       tags: [],
+      errors: [],
     };
   },
   created: function () {
@@ -49,6 +52,20 @@ export default {
   methods: {
     cleanTime: function (dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
+    },
+    favoriteEvent: function () {
+      var params = {
+        event_id: this.currentEvent.id,
+      };
+      axios
+        .post("/api/favorites", params)
+        .then((response) => {
+          console.log("Successfully favorited", response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };

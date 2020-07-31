@@ -28,6 +28,7 @@
         <p>@{{ event.venue }}</p>
         <p>{{ cleanTime(event.start_time) }}</p>
         <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
+        <button v-on:click="favoriteEvent(event)">Favorite</button>
       </div>
       
     </div>
@@ -96,6 +97,20 @@ export default {
     },
     resetDate() {
       this.formattedDate = null;
+    },
+    favoriteEvent: function (event) {
+      var params = {
+        event_id: event.id,
+      };
+      axios
+        .post("/api/favorites", params)
+        .then((response) => {
+          console.log("Successfully favorited", response.data);
+        })
+        .catch((error) => {
+          console.log(error.response.data.errors);
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
