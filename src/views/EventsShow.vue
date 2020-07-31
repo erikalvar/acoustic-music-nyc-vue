@@ -11,6 +11,7 @@
     <div>
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
+    <br>
     <button v-on:click="favoriteEvent">Favorite</button>
 
     <h3>Tags:</h3>

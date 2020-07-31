@@ -8,7 +8,7 @@
     is-inline
     />
 
-    <button v-on:click="resetDate">Today</button>
+    <button v-on:click="resetDate">Reset</button>
 
 
     <div>
@@ -96,7 +96,9 @@ export default {
       return events;
     },
     resetDate() {
+      this.date = new Date();
       this.formattedDate = null;
+      setTimeout(() => (this.formattedDate = null), 500);
     },
     favoriteEvent: function (event) {
       var params = {
