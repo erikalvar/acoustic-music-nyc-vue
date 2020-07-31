@@ -27,6 +27,7 @@
         <h3>{{ event.title }}</h3>
         <p>@{{ event.venue }}</p>
         <p>{{ cleanTime(event.start_time) }}</p>
+        <img v-bind:src="`${event.image_url}`">
         <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
         <button v-on:click="favoriteEvent(event)">Favorite</button>
       </div>

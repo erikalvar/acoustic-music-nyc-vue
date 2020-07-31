@@ -15,8 +15,8 @@
       <h3>Favorited Events</h3>
       <div v-for="favorite_event in favorited_events">
         <h3>{{ favorite_event.title }}</h3>
-        <h3>{{ favorite_event.venue }}</h3>
-        <h3>{{ cleanTime(favorite_event.start_time) }}</h3>
+        <p>{{ favorite_event.venue }}</p>
+        <p>{{ cleanTime(favorite_event.start_time) }}</p>
         <router-link v-bind:to="`/events/${favorite_event.id}`">Show Info</router-link>
       </div>
     </div>
