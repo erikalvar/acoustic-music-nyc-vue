@@ -68,7 +68,7 @@ export default {
   watch: {
     date: function () {
       this.formattedDate = moment(this.date).format("YYYY-MM-DD");
-      console.log("test");
+      // console.log("test");
     },
   },
   created: function () {
@@ -97,7 +97,7 @@ export default {
     },
     resetDate() {
       this.date = new Date();
-      this.formattedDate = null;
+      // this.formattedDate = null;
       setTimeout(() => (this.formattedDate = null), 500);
     },
     favoriteEvent: function (event) {
