@@ -12,12 +12,8 @@
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
     <br>
-
-    <!-- <div>
-      <input type="checkbox" id="favorite" :value="fo.id" v-model="selectedTagsIds">
-      <label for="favorite">Favorite Event</label>
-    </div> -->
-    <button v-on:click="toggleFavorite">Toggle Favorite</button>
+    <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
+    <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
     <!-- <button v-on:click="favoriteEvent">Favorite</button> -->
     <!-- <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
 
@@ -75,7 +71,7 @@ export default {
       axios
         .post(`/api/events/${this.currentEvent.id}/toggle_favorite`, params)
         .then((response) => {
-          console.log(response.data);
+          console.log("Toggled!");
         })
         .catch((error) => {
           console.log(error.response.data.errors);

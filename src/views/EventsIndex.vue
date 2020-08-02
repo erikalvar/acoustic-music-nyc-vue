@@ -32,8 +32,12 @@
         <br>
         <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
         <br>
-        <button v-on:click="toggleFavorite(event)">Toggle Favorite</button>
+        <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
+        <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>
         <!-- <button v-on:click="favoriteEvent(event)">Favorite</button> -->
+        <!-- <div class="like-icon mx-2 <%= 'red' if current_user.favorited?(cocktail) %>" data-id="<%= cocktail.id %>">
+          <i class="fas fa-heart"></i> -->
+        <!-- </div> -->
       </div>
       
     </div>
@@ -63,6 +67,7 @@ export default {
       },
       date: new Date(),
       formattedDate: "",
+      user_id: "",
     };
   },
   computed: {
@@ -105,6 +110,7 @@ export default {
       this.date = new Date();
       // this.formattedDate = null;
       setTimeout(() => (this.formattedDate = null), 500);
+      console.log(this.user_id);
     },
     toggleFavorite: function (event) {
       var params = {
@@ -114,26 +120,12 @@ export default {
         .post(`/api/events/${event.id}/toggle_favorite`, params)
         .then((response) => {
           console.log("favorite toggled");
-        })
-        .catch((error) => {
-          console.log(error.response.data.errors);
-          this.errors = error.response.data.errors;
         });
+      // .then.catch((error) => {
+      //   console.log(error.response.data.errors);
+      //   this.errors = error.response.data.errors;
+      // });
     },
-    // favoriteEvent: function (event) {
-    //   var params = {
-    //     event_id: event.id,
-    //   };
-    //   axios
-    //     .post("/api/favorites", params)
-    //     .then((response) => {
-    //       console.log("Successfully favorited", response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response.data.errors);
-    //       this.errors = error.response.data.errors;
-    //     });
-    // },
   },
 };
 </script>
