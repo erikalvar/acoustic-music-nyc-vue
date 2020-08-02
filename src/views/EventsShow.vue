@@ -12,7 +12,14 @@
       <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
     </div>
     <br>
-    <button v-on:click="favoriteEvent">Favorite</button>
+
+    <!-- <div>
+      <input type="checkbox" id="favorite" :value="fo.id" v-model="selectedTagsIds">
+      <label for="favorite">Favorite Event</label>
+    </div> -->
+    <button v-on:click="toggleFavorite">Toggle Favorite</button>
+    <!-- <button v-on:click="favoriteEvent">Favorite</button> -->
+    <!-- <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
 
     <h3>Tags:</h3>
     <div v-for="tag in tags">
@@ -39,6 +46,8 @@ export default {
       address: "",
       tags: [],
       errors: [],
+      // favoritedEventIds: [],
+      // userId: "",
     };
   },
   created: function () {
@@ -49,25 +58,52 @@ export default {
       this.address = response.formatted_address;
       console.log(this.tags);
     });
+    // axios.get(`/api/users/${getUserId()}`).then((response) => {
+    //   this.favoritedEventIds = response.data;
+    //   console.log(this.event);
+    //   this.selectedTagsIds = this.event.tags.map((tag) => tag.id);
+    // });
   },
   methods: {
     cleanTime: function (dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
-    favoriteEvent: function () {
+    toggleFavorite: function () {
       var params = {
-        event_id: this.currentEvent.id,
+        id: this.currentEvent.id,
       };
       axios
-        .post("/api/favorites", params)
+        .post(`/api/events/${this.currentEvent.id}/toggle_favorite`, params)
         .then((response) => {
-          console.log("Successfully favorited", response.data);
+          console.log(response.data);
         })
         .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
+    // favoriteEvent: function () {
+    //   var params = {
+    //     event_id: this.currentEvent.id,
+    //   };
+    //   axios
+    //     .post("/api/favorites", params)
+    //     .then((response) => {
+    //       console.log(response.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response.data.errors);
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
+    // getUserId: function () {
+    //   return localStorage.getItem("user_id");
+    // },
+    // unFavoriteEvent: function () {
+    //   axios.delete(`/api/favorites/${this.current.id}`).then((response) => {
+    //     console.log("Event successfully un-favorited", response.data);
+    //   });
+    // },
   },
 };
 </script>

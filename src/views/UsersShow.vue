@@ -13,12 +13,19 @@
 
     <div>
       <h3>Favorited Events</h3>
-      <div v-for="favorite_event in favorited_events">
-        <h3>{{ favorite_event.title }}</h3>
-        <p>{{ favorite_event.venue }}</p>
-        <p>{{ cleanTime(favorite_event.start_time) }}</p>
-        <router-link v-bind:to="`/events/${favorite_event.id}`">Show Info</router-link>
-        <button v-on:click="removeFavorite()">Remove Favorite</button>
+      <div v-for="favoriteEvent in favoritedEvents">
+        <h3>{{ favoriteEvent.title }}</h3>
+        <p>{{ favoriteEvent.venue }}</p>
+        <p>{{ cleanTime(favoriteEvent.start_time) }}</p>
+        <router-link v-bind:to="`/events/${favoriteEvent.id}`">Show Info</router-link>
+        <br>
+        <button v-on:click="toggleFavorite(favoriteEvent)">Toggle Favorite</button>
+
+        <!-- <button v-on:click="removeFavorite(favoriteEvent)">Remove Favorite</button> -->
+        <br>
+        <br>
+        <!-- <input type="checkbox" id="favoritedEvent" :value="favorite.id" v-model="favoritedEventIds">
+        <label for="favoritedEvent">Favorited</label> -->
       </div>
     </div>
 
@@ -37,32 +44,51 @@ export default {
     return {
       message: "Welcome to Events Show",
       user: {},
-      favorited_events: [],
+      favoritedEvents: [],
+      // favoritedEventIds: [],
     };
   },
   created: function () {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.user = response.data;
-      this.favorited_events = response.data.favorited_events;
-      console.log(this.favorited_events);
+      this.favoritedEvents = response.data.favorited_events;
+      // console.log(this.favoritedEvents);
+      // this.favoritedEventIds = response.data.favorites;
+      // console.log(this.favoritedEventIds);
     });
   },
   methods: {
     cleanTime: function (dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
-    removeFavorite: function (favorite) {
+    toggleFavorite: function (favoriteEvent) {
+      var params = {
+        id: favoriteEvent.id,
+      };
       axios
-        .delete(`"/api/favorites/${favorite.id}"`)
+        .post(`/api/events/${favoriteEvent.id}/toggle_favorite`, params)
         .then((response) => {
-          console.log("removed favorite", response.data);
+          console.log("favorite toggled");
         })
+        .then(
+          this.favoritedEvents.splice(
+            this.favoritedEvents.indexOf(favoriteEvent.id),
+            1
+          )
+        )
         .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
+    //   removeFavorite: function (favoriteEvent) {
+    //     console.log(favoriteEvent.id);
+    //     const favoriteId = this.user.favorites.id.filter(
+    //       this.user.favorites.id === favoriteEvent.id
+    //     );
+    //     console.log(favoriteId);
+    //   },
   },
 };
 </script>

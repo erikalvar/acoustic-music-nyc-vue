@@ -25,13 +25,15 @@
     <div v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
       <div v-if="event.moderator_id">
         <h3>{{ event.title }}</h3>
+        <p>{{ event.favorites_info }}</p>
         <p>@{{ event.venue }}</p>
         <p>{{ cleanTime(event.start_time) }}</p>
         <img v-bind:src="`${event.image_url}`">
         <br>
         <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
         <br>
-        <button v-on:click="favoriteEvent(event)">Favorite</button>
+        <button v-on:click="toggleFavorite(event)">Toggle Favorite</button>
+        <!-- <button v-on:click="favoriteEvent(event)">Favorite</button> -->
       </div>
       
     </div>
@@ -78,6 +80,7 @@ export default {
     axios.get("/api/events").then((response) => {
       console.log("All Events:", response.data);
       this.events = response.data;
+      // console.log(this.events.first.favoritesInfo);
     });
     axios.get("/api/tags").then((response) => {
       this.tags = response.data;
@@ -103,20 +106,34 @@ export default {
       // this.formattedDate = null;
       setTimeout(() => (this.formattedDate = null), 500);
     },
-    favoriteEvent: function (event) {
+    toggleFavorite: function (event) {
       var params = {
-        event_id: event.id,
+        id: event.id,
       };
       axios
-        .post("/api/favorites", params)
+        .post(`/api/events/${event.id}/toggle_favorite`, params)
         .then((response) => {
-          console.log("Successfully favorited", response.data);
+          console.log("favorite toggled");
         })
         .catch((error) => {
           console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
+    // favoriteEvent: function (event) {
+    //   var params = {
+    //     event_id: event.id,
+    //   };
+    //   axios
+    //     .post("/api/favorites", params)
+    //     .then((response) => {
+    //       console.log("Successfully favorited", response.data);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error.response.data.errors);
+    //       this.errors = error.response.data.errors;
+    //     });
+    // },
   },
 };
 </script>
