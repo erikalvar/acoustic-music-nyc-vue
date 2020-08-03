@@ -57,11 +57,8 @@
           <div class="col-lg-4 col-md-12">
             <div class="side-bar padding-30px-left md-no-padding-left">
               <div class="widget search padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Search</h3>
-                </div>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Type here..." v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
+                  <input type="text" class="form-control" placeholder="Search Events" v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
                   </div>
@@ -69,9 +66,6 @@
               </div>
 
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Select Date</h3>
-                </div>
                 <ul class="widget-list no-margin-bottom">
                   <v-date-picker v-model="date" mode="single" is-inline/>
                   <button v-on:click="resetDate">Reset</button>
@@ -147,31 +141,6 @@
                   </li>
                 </ul>
               </div> -->
-
-              <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Follow us</h3>
-                </div>
-                <div class="bg-light padding-20px-all">
-                  <ul class="social-links no-margin text-center">
-                    <li>
-                      <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="fab fa-dribbble"></i></a>
-                    </li>
-                    <li>
-                      <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
 
               <!-- <div class="widget">
                 <div class="bg-img text-center padding-30px-all cover-background" data-overlay-dark="5" data-background="img/content/testimonial.jpg">

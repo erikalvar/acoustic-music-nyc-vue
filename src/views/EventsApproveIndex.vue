@@ -1,6 +1,6 @@
 <template>
   <div class="events-approve-index">
-    <h1>Acoustic Music NYC</h1>
+    <h1>Approve Events</h1>
 
     <div>
       <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">

@@ -13,6 +13,8 @@
               <p></p><span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600">Email: {{ user.email }}</span>
               <br><br>
               <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"><router-link :to="`/users/${user.id}/edit`">Edit Profile</router-link></span>
+              <br>
+              <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"><router-link v-if="user.moderator==true" to="/events/approve">Approve Events</router-link></span>
             </div>
             <h5 class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30">Favorited Events</h5>
 
@@ -36,8 +38,7 @@
                     <div class="meta">
                       <span class="date">{{ cleanTime(favoriteEvent.start_time) }}</span>
                       <span class="author">
-                        <button v-on:click="toggleFavorite(favoriteEvent)" v-if="!favoriteEvent.favorited">Favorite</button>
-                        <button v-on:click="toggleFavorite(favoriteEvent)" v-else>Unfavorite</button>  
+                        <button v-on:click="toggleFavorite(favoriteEvent)">Unfavorite</button> 
                       </span>
                     </div>
                   </div>
