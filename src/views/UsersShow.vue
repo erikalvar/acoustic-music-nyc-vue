@@ -19,10 +19,10 @@
         <p>{{ cleanTime(favoriteEvent.start_time) }}</p>
         <router-link v-bind:to="`/events/${favoriteEvent.id}`">Show Info</router-link>
         <br>
-        <button v-on:click="toggleFavorite(favoriteEvent)">Toggle Favorite</button>
-        <br>
+        <button v-on:click="toggleFavorite(favoriteEvent)">Unfavorite</button>
+        <!-- <br>
         <button v-on:click="toggleFavorite(favoriteEvent)" v-if="!favoriteEvent.favorited">Favorite</button>
-        <button v-on:click="toggleFavorite(favoriteEvent)" v-else>Unfavorite</button>
+        <button v-on:click="toggleFavorite(favoriteEvent)" v-else>Unfavorite</button> -->
 
         
 

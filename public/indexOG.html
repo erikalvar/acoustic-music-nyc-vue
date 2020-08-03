@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- metas -->
+  <meta charset="utf-8">
+  <meta name="author" content="Chitrakoot Web" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="Live Multipurpose Blog Template" />
+  <meta name="description" content="Live - Multipurpose Blog Template" />
+
+  <!-- title  -->
+  <title>Live - Multipurpose Blog Template</title>
+
+  <!-- favicon -->
+  <link rel="shortcut icon" href="img/logos/favicon.png" />
+  <link rel="apple-touch-icon" href="img/logos/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="img/logos/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="img/logos/apple-touch-icon-114x114.png" />
+
+  <!-- plugins -->
+  <link rel="stylesheet" href="css/plugins.css" />
+
+  <!-- search css -->
+  <link rel="stylesheet" href="search/search.css" />
+
+  <!-- core style css -->
+  <link href="css/styles.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- start main-wrapper section -->
+  <div class="main-wrapper">
+
+    <div id="app"></div>
+
+  </div>
+  <!-- end main-wrapper section -->
+
+  <!-- start scroll to top -->
+  <a href="javascript:void(0)" class="scroll-to-top"><i class="fas fa-angle-up" aria-hidden="true"></i></a>
+  <!-- end scroll to top -->
+
+  <!-- all js include start -->
+
+  <!-- jQuery -->
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+
+  <script src="js/jquery.min.js"></script>
+
+  <!-- modernizr js -->
+  <script src="js/modernizr.js"></script>
+
+  <!-- bootstrap -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    var $window = $(window);
+
+    $(document).ready(function() {
+
+      $("a[href^='#']").click(function(e) {
+        e.preventDefault();
+
+        var position = $($(this).attr("href")).offset().top;
+
+        $("body, html").animate({
+          scrollTop: position
+        }, 1000);
+      });
+
+      // scroll to top
+      $window.on('scroll', function() {
+        if ($(this).scrollTop() > 500) {
+          $(".scroll-to-top").fadeIn(400);
+
+        } else {
+          $(".scroll-to-top").fadeOut(400);
+        }
+      });
+
+      $(".scroll-to-top").on('click', function(event) {
+        event.preventDefault();
+        $("html, body").animate({
+          scrollTop: 0
+        }, 600);
+      });
+
+    });
+  </script>
+
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= VUE_APP_GOOGLE_API_KEY %>
+  &libraries=places"></script>
+
+  <!-- all js include end -->
+
+</body>
+
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%= VUE_APP_GOOGLE_API_KEY %>
+    &libraries=places"></script>
+  </body>
+</html> -->
+
