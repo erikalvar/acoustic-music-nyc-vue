@@ -9,7 +9,7 @@
           <!--  start blog left-->
           <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
 
-            <div class="card margin-40px-bottom border-0 bg-light rounded-0">
+            <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
               <div class="row no-gutters list-blog">
 
                 <div class="col-md-5">
@@ -20,12 +20,15 @@
 
                     <span class="category"><a href="#!">Adventure</a></span>
 
-                    <h5><a href="standard-post.html">Adventure girl</a></h5>
-                    <p>Excepteur sint occaecat cupidatat non card proident, sunt in culpa qui officia.</p>
+                    <h5><a href="standard-post.html">{{ event.title }}</a></h5>
+                    <p>@{{ event.venue }}</p>
 
                     <div class="meta">
-                      <span class="date">18 Mar 2020</span>
-                      <span class="author">By <a href="#!">Matthew Tallman</a></span>
+                      <span class="date">{{ cleanTime(event.start_time) }}</span>
+                      <span class="author">
+                        <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
+                        <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>  
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -57,7 +60,7 @@
                   <h3>Search</h3>
                 </div>
                 <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Type here..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <input type="text" class="form-control" placeholder="Type here..." v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
                   </div>
@@ -66,43 +69,25 @@
 
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="widget-title margin-35px-bottom">
-                  <h3>Categories</h3>
+                  <h3>Select Date</h3>
                 </div>
                 <ul class="widget-list no-margin-bottom">
-                  <li>
-                    <a href="#">Entertainment
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">Business 
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">Adventure
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">Decorating
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">Travelling
-                    </a>
-
-                  </li>
-                  <li>
-                    <a href="#">Shopping
-                    </a>
-
-                  </li>
+                  <v-date-picker v-model="date" mode="single" is-inline/>
+                  <button v-on:click="resetDate">Reset</button>
                 </ul>
               </div>
 
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+                <div class="widget-title margin-35px-bottom">
+                  <h3>Tags</h3>
+                </div>
+                <ul class="tags no-margin-bottom" v-for="tag in tags">
+                  <li><input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
+                  <label for="tag">#{{ tag.name }}</label></li>
+                </ul>
+              </div>
+
+              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="widget-title margin-35px-bottom">
                   <h3>Recent Posts</h3>
                 </div>
@@ -134,27 +119,9 @@
                     <span class="font-size14">12 Jan, 2020</span>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Tags</h3>
-                </div>
-                <ul class="tags no-margin-bottom">
-                  <li><a href="jvascript:void(0)">Lifestyle</a></li>
-                  <li><a href="jvascript:void(0)">Food</a></li>
-                  <li><a href="jvascript:void(0)">Kids</a></li>
-                  <li><a href="jvascript:void(0)">Fashion</a></li>
-                  <li><a href="jvascript:void(0)">Travel</a></li>
-                  <li><a href="jvascript:void(0)">DIY</a></li>
-                  <li><a href="jvascript:void(0)">Music</a></li>
-                  <li><a href="jvascript:void(0)">Crafts</a></li>
-                  <li><a href="jvascript:void(0)">Business</a></li>
-                  <li><a href="jvascript:void(0)">Career</a></li>
-                </ul>
-              </div>
-
-              <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="widget-title margin-35px-bottom">
                   <h3>Instagram</h3>
                 </div>
@@ -178,7 +145,7 @@
                     <a href="#"><img src="img/blog/insta-6.jpg" alt=""></a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
 
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="widget-title margin-35px-bottom">
@@ -205,7 +172,7 @@
                 </div>
               </div>
 
-              <div class="widget">
+              <!-- <div class="widget">
                 <div class="bg-img text-center padding-30px-all cover-background" data-overlay-dark="5" data-background="img/content/testimonial.jpg">
                   <div class="owl-carousel owl-theme" id="testmonials-carousel">
                     <div>
@@ -220,7 +187,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
 
             </div>
           </div>
