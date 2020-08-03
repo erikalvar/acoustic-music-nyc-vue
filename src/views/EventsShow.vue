@@ -1,6 +1,39 @@
 <template>
   <div class="events-show">
-    <h1>{{ currentEvent.title }}</h1>
+
+    <!-- start blog Section -->
+    <section>
+      <div class="container">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-md-11">
+            <!-- start content  -->
+            <h3 class="margin-15px-top font-weight-600 font-size40 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30">{{ currentEvent.title }}</h3>
+            <img v-bind:src="`${currentEvent.image_url}`" class="margin-30px-bottom" alt="..." /><br>
+            <span class="text-extra-dark-gray font-size14"><span class="font-weight-600">{{ cleanTime(currentEvent.start_time) }}</span> </span> 
+            <h3 class="margin-15px-top font-weight-600 font-size22 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30">@{{ currentEvent.venue }}</h3>
+            <h3 class="margin-15px-top font-weight-600 font-size16 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30">{{ currentEvent.venue_address }}</h3>
+            <p>{{ currentEvent.description }}</p>
+            <p>Tickets: <a :href="`${currentEvent.tickets_url}`">{{ currentEvent.tickets_url }}</a></p>
+            <h6>Tags:</h6>
+            <div v-for="tag in tags">
+              <p>#{{ tag.name }}</p>
+            </div> 
+            
+
+            <!-- end content -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end blog section -->
+
+
+
+
+
+    <!-- <h1>{{ currentEvent.title }}</h1>
     <p>Venue: {{ currentEvent.venue }}</p>
     <p>Venue Address: {{ currentEvent.venue_address }}</p>
     <p>Satrt: {{ cleanTime(currentEvent.start_time) }}</p>
@@ -17,10 +50,10 @@
     <!-- <button v-on:click="favoriteEvent">Favorite</button> -->
     <!-- <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
 
-    <h3>Tags:</h3>
+    <!-- <h3>Tags:</h3>
     <div v-for="tag in tags">
       <p>#{{ tag.name }}</p>
-    </div>
+    </div> --> 
 
   </div>
 </template>

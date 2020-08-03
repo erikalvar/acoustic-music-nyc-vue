@@ -13,14 +13,15 @@
               <div class="row no-gutters list-blog">
 
                 <div class="col-md-5">
-                  <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" data-background="img/blog/list-1.jpg"></div>
+                  <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
                 </div>
                 <div class="col-md-7">
                   <div class="card-body">
 
-                    <span class="category"><a href="#!">Adventure</a></span>
+                    <!-- <span class="category"><a href="#!">Adventure</a></span> -->
 
-                    <h5><a href="standard-post.html">{{ event.title }}</a></h5>
+                    <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
+                    <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
                     <p>@{{ event.venue }}</p>
 
                     <div class="meta">

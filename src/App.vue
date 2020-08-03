@@ -28,7 +28,7 @@
 
                   <div class="navbar-header navbar-header-custom">
                     <!-- start logo -->
-                    <a href="index.html" class="navbar-brand width-200px sm-width-180px xs-width-150px"><img id="logo" src="img/logos/logo.png" alt="logo"></a>
+                    <!-- <a href="index.html" class="navbar-brand width-200px sm-width-180px xs-width-150px"><img id="logo" src="img/logos/logo.png" alt="logo"></a> -->
                     <!-- end logo -->
                   </div>
 
