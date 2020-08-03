@@ -15,6 +15,8 @@
             <h3 class="margin-15px-top font-weight-600 font-size16 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30">{{ currentEvent.venue_address }}</h3>
             <p>{{ currentEvent.description }}</p>
             <p>Tickets: <a :href="`${currentEvent.tickets_url}`">{{ currentEvent.tickets_url }}</a></p>
+            <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
+            <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
             <h6>Tags:</h6>
             <div v-for="tag in tags">
               <p>#{{ tag.name }}</p>
@@ -47,8 +49,8 @@
     <br>
     <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
     <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
-    <!-- <button v-on:click="favoriteEvent">Favorite</button> -->
-    <!-- <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
+    <button v-on:click="favoriteEvent">Favorite</button>
+    <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
 
     <!-- <h3>Tags:</h3>
     <div v-for="tag in tags">
@@ -104,11 +106,8 @@ export default {
       axios
         .post(`/api/events/${this.currentEvent.id}/toggle_favorite`, params)
         .then((response) => {
-          console.log("Toggled!");
-        })
-        .catch((error) => {
-          console.log(error.response.data.errors);
-          this.errors = error.response.data.errors;
+          console.log(response.data, "favorite toggled");
+          this.currentEvent.favorited = response.data.favorited;
         });
     },
     // favoriteEvent: function () {
