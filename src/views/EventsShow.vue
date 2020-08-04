@@ -17,6 +17,9 @@
             <p>Tickets: <a :href="`${currentEvent.tickets_url}`">{{ currentEvent.tickets_url }}</a></p>
             <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
             <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
+            <div>
+              <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
+            </div>
             <h6>Tags:</h6>
             <div v-for="tag in tags">
               <p>#{{ tag.name }}</p>
@@ -77,8 +80,6 @@ export default {
       address: "",
       tags: [],
       errors: [],
-      // favoritedEventIds: [],
-      // userId: "",
     };
   },
   created: function () {
@@ -89,11 +90,6 @@ export default {
       this.address = response.formatted_address;
       console.log(this.tags);
     });
-    // axios.get(`/api/users/${getUserId()}`).then((response) => {
-    //   this.favoritedEventIds = response.data;
-    //   console.log(this.event);
-    //   this.selectedTagsIds = this.event.tags.map((tag) => tag.id);
-    // });
   },
   methods: {
     cleanTime: function (dateTime) {

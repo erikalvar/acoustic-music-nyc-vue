@@ -10,26 +10,28 @@
           <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
 
             <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
-              <div class="row no-gutters list-blog">
+              <div v-if="event.moderator_id"> 
+                <div class="row no-gutters list-blog">
 
-                <div class="col-md-5">
-                  <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
-                </div>
-                <div class="col-md-7">
-                  <div class="card-body">
+                  <div class="col-md-5">
+                    <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
 
-                    <!-- <span class="category"><a href="#!">Adventure</a></span> -->
+                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
 
-                    <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
-                    <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
-                    <p>@{{ event.venue }}</p>
+                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
+                      <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
+                      <p>@{{ event.venue }}</p>
 
-                    <div class="meta">
-                      <span class="date">{{ cleanTime(event.start_time) }}</span>
-                      <span class="author">
-                        <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
-                        <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>  
-                      </span>
+                      <div class="meta">
+                        <span class="date">{{ cleanTime(event.start_time) }}</span>
+                        <span class="author">
+                          <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
+                          <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>  
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>

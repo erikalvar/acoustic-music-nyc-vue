@@ -2,9 +2,6 @@
   <div class="events-edit">
     <form v-on:submit.prevent="editEvent">
       <h1>Edit an Event</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
       <div class="form-group">
         <label>Title:</label>
         <input type="text" class="form-control" v-model="event.title">
@@ -39,6 +36,9 @@
       </div>
       <input type="submit" class="btn btn-primary" value="Submit" /> <br>
       <button v-on:click="destroyEvent()">Delete Event</button>
+      <ul>
+        <li class="text-danger">{{ errors }}</li>
+      </ul>
     </form>
 
     <br>
@@ -47,7 +47,7 @@
       <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTagsIds">
       <label for="tag">#{{ tag.name }}</label>
     </div>
-    <span>Checked tag ids: {{ selectedTagsIds }}</span>
+    <!-- <span>Checked tag ids: {{ selectedTagsIds }}</span> -->
 
 
   </div>
@@ -98,7 +98,7 @@ export default {
           this.$router.push(`/events/${response.data.id}`);
         })
         .catch((error) => {
-          console.log(error.response.data.errors);
+          console.log(error.response.data);
           this.errors = error.response.data.errors;
         });
     },

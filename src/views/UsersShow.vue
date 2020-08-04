@@ -120,9 +120,15 @@ export default {
   },
   created: function () {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       this.user = response.data;
-      this.favoritedEvents = response.data.favorited_events;
+      var test = response.data.favorited_events;
+      // console.log(test);
+      this.favoritedEvents = test.sort((a, b) =>
+        a.start_time.localeCompare(b.start_time)
+      );
+      // console.log(this.favoritedEvents);
+
       // console.log(this.favoritedEvents);
       // this.favoritedEventIds = response.data.favorites;
       // console.log(this.favoritedEventIds);
@@ -143,7 +149,7 @@ export default {
         })
         .then(
           this.favoritedEvents.splice(
-            this.favoritedEvents.indexOf(favoriteEvent.id),
+            this.favoritedEvents.indexOf(favoriteEvent),
             1
           )
         )
