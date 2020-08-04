@@ -38,11 +38,11 @@
                   <ul class="navbar-nav ml-auto" id="nav" style="display: none;">
                     <li><router-link to="/">Home</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
-                    <li><router-link v-if="isLoggedIn()" to="/events/new">Submit Event</router-link></li>
-                    <li><router-link v-if="!isLoggedIn()" to="/signup">Signup</router-link></li>
-                    <li><router-link v-if="!isLoggedIn()" to="/login">Login</router-link></li>
-                    <li><router-link v-if="isLoggedIn()" to="/logout">Logout</router-link></li>
-                    <li><router-link v-if="isLoggedIn()" v-bind:to="`/users/${getUserId()}`">User Profile</router-link></li>
+                    <li v-if="isLoggedIn()"><router-link to="/events/new">Submit Event</router-link></li>
+                    <li v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></li>
+                    <li v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></li>
+                    <li v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></li>
+                    <li v-if="isLoggedIn()"><router-link v-bind:to="`/users/${getUserId()}`">User Profile</router-link></li>
                   </ul>
                   <!-- end menu area -->
 
@@ -69,7 +69,7 @@
 
     <!-- start footer section -->
     <footer class="bg-light">
-      <div class="padding-90px-top md-padding-70px-top sm-padding-50px-top">
+      <div class="padding-30px-top md-padding-30px-top sm-padding-30px-top">
         <div class="container">
           
           <div class="padding-30px-bottom margin-60px-top row">

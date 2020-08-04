@@ -9,7 +9,7 @@
           <!--  start blog left-->
           <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
 
-            <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
+            <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate).slice(0, showNumber)">
               <div v-if="event.moderator_id"> 
                 <div class="row no-gutters list-blog">
 
@@ -28,8 +28,8 @@
                       <div class="meta">
                         <span class="date">{{ cleanTime(event.start_time) }}</span>
                         <span class="author">
-                          <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
-                          <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>  
+                          <button class="btn" v-on:click="toggleFavorite(event)" v-if="!event.favorited"><i class="far fa-star"></i></button>
+                          <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else><i class="fas fa-star" ></i></button>  
                         </span>
                       </div>
                     </div>
@@ -39,7 +39,8 @@
             </div>
 
             <!-- start pager  -->
-            <div class="margin-50px-top">
+            <button v-on:click="upNumber">Show more</button>
+            <!-- <div class="margin-50px-top">
               <div class="pagination text-small text-uppercase text-extra-dark-gray">
                 <ul>
                   <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
@@ -49,7 +50,7 @@
                   <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <!-- end pager  -->
 
           </div>
@@ -70,7 +71,7 @@
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <ul class="widget-list no-margin-bottom">
                   <v-date-picker v-model="date" mode="single" is-inline/>
-                  <button v-on:click="resetDate">Reset</button>
+                  <button class="butn" v-on:click="resetDate">Reset</button>
                 </ul>
               </div>
 
@@ -212,6 +213,18 @@
 </template>
 
 <style>
+.btn {
+  color: black;
+  border: none;
+  font-size: 24px;
+  background: none;
+}
+.btnf {
+  color: gold;
+  border: none;
+  font-size: 24px;
+  background: none;
+}
 </style>
 
 <script>
@@ -234,6 +247,7 @@ export default {
       date: new Date(),
       formattedDate: "",
       user_id: "",
+      showNumber: 2,
     };
   },
   computed: {
@@ -292,6 +306,10 @@ export default {
       //   console.log(error.response.data.errors);
       //   this.errors = error.response.data.errors;
       // });
+    },
+    upNumber: function () {
+      this.showNumber += 2;
+      console.log(this.showNumber);
     },
   },
 };

@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
           <div class="col-md-10">
             <!-- start content  -->
-            <div class="bg-light padding-70px-all xs-padding-30px-all margin-30px-bottom">
+            <div class="bg-light padding-70px-all xs-padding-30px-all margin-30px-bottom border-all">
               
               <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600">Username: {{ user.username }}</span>
               <p></p><span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600">Email: {{ user.email }}</span>
@@ -38,7 +38,7 @@
                     <div class="meta">
                       <span class="date">{{ cleanTime(favoriteEvent.start_time) }}</span>
                       <span class="author">
-                        <button v-on:click="toggleFavorite(favoriteEvent)">Unfavorite</button> 
+                        <button class="btnf" v-on:click="toggleFavorite(favoriteEvent)"><i class="fas fa-star" ></i></button> 
                       </span>
                     </div>
                   </div>
