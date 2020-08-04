@@ -39,18 +39,7 @@
             </div>
 
             <!-- start pager  -->
-            <button v-on:click="upNumber">Show more</button>
-            <!-- <div class="margin-50px-top">
-              <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                <ul>
-                  <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
-                  <li class="active"><a href="javascript:void(0);">1</a></li>
-                  <li><a href="javascript:void(0);">2</a></li>
-                  <li><a href="javascript:void(0);">3</a></li>
-                  <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
-                </ul>
-              </div>
-            </div> -->
+            <button class="btn butn" v-on:click="upNumber">Show more</button>
             <!-- end pager  -->
 
           </div>
@@ -58,29 +47,35 @@
 
           <!--  start blog right-->
           <div class="col-lg-4 col-md-12">
-            <div class="side-bar padding-30px-left md-no-padding-left">
+            <div class="side-bar padding-30px-left md-no-padding-left" >
               <div class="widget search padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="input-group mb-3">
                   <input type="text" class="form-control" placeholder="Search Events" v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
                   <div class="input-group-append">
                     <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
                   </div>
+                  
+                  <ul class="widget-list no-margin-bottom">
+                    <v-date-picker v-model="date" mode="single" is-inline/>
+                    <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
+                  </ul>
+
                 </div>
               </div>
 
-              <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <ul class="widget-list no-margin-bottom">
                   <v-date-picker v-model="date" mode="single" is-inline/>
-                  <button class="butn" v-on:click="resetDate">Reset</button>
+                  <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
                 </ul>
-              </div>
+              </div> -->
 
               <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
                 <div class="widget-title margin-35px-bottom">
                   <h3>Tags</h3>
                 </div>
                 <ul class="tags no-margin-bottom" v-for="tag in tags">
-                  <li><input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
+                  <li class="tagbutton"><input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
                   <label for="tag">#{{ tag.name }}</label></li>
                 </ul>
               </div>

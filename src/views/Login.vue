@@ -1,6 +1,32 @@
 <template>
   <div class="login">
-    <form v-on:submit.prevent="submit()">
+    <section>
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-6 border-all pagebox">
+            <form v-on:submit.prevent="submit">
+              <h3 class="title margin-10px-top">Create Profile</h3>
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="text" class="form-control" v-model="email">
+              </div>
+              <div class="form-group">
+                <label>Password:</label>
+                <input type="text" class="form-control" v-model="password">
+              </div>
+              <input type="submit" class="btn btn-primary margin-10px-bottom" value="Submit" />             </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    
+    
+    <!-- <form v-on:submit.prevent="submit()">
       <h1>Login</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -14,7 +40,7 @@
         <input type="password" class="form-control" v-model="password">
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
+    </form> -->
   </div>
 </template>
 

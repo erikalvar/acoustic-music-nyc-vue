@@ -1,6 +1,38 @@
 <template>
   <div class="signup">
-    <form v-on:submit.prevent="submit()">
+
+    <section>
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-6 border-all pagebox">
+            <form v-on:submit.prevent="submit">
+              <h3 class="title margin-10px-top">Create Profile</h3>
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
+              <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control" v-model="username">
+              </div>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="text" class="form-control" v-model="email">
+              </div>
+              <div class="form-group">
+                <label>Password:</label>
+                <input type="text" class="form-control" v-model="password">
+              </div>
+              <div class="form-group">
+                <label>Password Confirmation:</label>
+                <input type="text" class="form-control" v-model="passwordConfirmation">
+              </div>
+              <input type="submit" class="btn btn-primary margin-10px-bottom" value="Submit" />             </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- <form v-on:submit.prevent="submit()">
       <h1>Signup</h1>
       <ul>
         <li class="text-danger" v-for="error in errors">{{ error }}</li>
@@ -22,7 +54,7 @@
         <input type="password" class="form-control" v-model="passwordConfirmation">
       </div>
       <input type="submit" class="btn btn-primary" value="Submit">
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -30,32 +62,32 @@
 import axios from "axios";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       username: "",
       email: "",
       password: "",
       passwordConfirmation: "",
-      errors: []
+      errors: [],
     };
   },
   methods: {
-    submit: function() {
+    submit: function () {
       var params = {
         username: this.username,
         email: this.email,
         password: this.password,
-        password_confirmation: this.passwordConfirmation
+        password_confirmation: this.passwordConfirmation,
       };
       axios
         .post("/api/users", params)
-        .then(response => {
+        .then((response) => {
           this.$router.push("/login");
         })
-        .catch(error => {
+        .catch((error) => {
           this.errors = error.response.data.errors;
         });
-    }
-  }
+    },
+  },
 };
 </script>

@@ -5,7 +5,7 @@
     <header>
       <div class="navbar-default">
         <!-- start top search -->
-        <div class="top-search bg-theme">
+        <!-- <div class="top-search bg-theme">
           <div class="container">
             <form class="search-form" action="search.html" method="GET" accept-charset="utf-8">
               <div class="input-group">
@@ -17,7 +17,7 @@
               </div>
             </form>
           </div>
-        </div>
+        </div> -->
         <!-- end top search -->
 
         <div class="container">
@@ -28,7 +28,7 @@
 
                   <div class="navbar-header navbar-header-custom">
                     <!-- start logo -->
-                    <a href="index.html" class="navbar-brand width-150px sm-width-180px xs-width-150px"><img id="logo" src="/img/demologo.png " alt="logo"></a>
+                    <router-link to="/" class="navbar-brand width-150px sm-width-180px xs-width-150px"><img id="logo" src="/img/demologo.png " alt="logo"></router-link>
                     <!-- end logo -->
                   </div>
 
@@ -36,7 +36,7 @@
 
                   <!-- start menu area -->
                   <ul class="navbar-nav ml-auto" id="nav" style="display: none;">
-                    <li><router-link to="/">Home</router-link></li>
+                    <li><router-link to="/" class="navhover">Home</router-link></li>
                     <li><router-link to="/about">About</router-link></li>
                     <li v-if="isLoggedIn()"><router-link to="/events/new">Submit Event</router-link></li>
                     <li v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></li>

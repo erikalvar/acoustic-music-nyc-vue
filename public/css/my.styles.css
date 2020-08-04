@@ -1,0 +1,17 @@
+.title {
+  text-align: center;
+}
+.navhover {
+  transition-duration: 0.4s;
+}
+.navhover:hover {
+  color: blue;
+}
+.pagebox {
+  background-color: lightblue;
+}
+.tagbutton {
+  border-radius: 5px;
+  background: #73ad21;
+  margin: 5px;
+}

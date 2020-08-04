@@ -3,31 +3,33 @@
 
     <section>
       <div class="container">
-        <div class="row justify-content-center">
-          <form v-on:submit.prevent="editUser">
-            <h1>Edit Profile</h1>
-            <ul>
-              <li class="text-danger" v-for="error in errors">{{ error }}</li>
-            </ul>
-            <div class="form-group">
-              <label>Username:</label>
-              <input type="text" class="form-control" v-model="user.username">
-            </div>
-            <div class="form-group">
-              <label>Email:</label>
-              <input type="text" class="form-control" v-model="user.email">
-            </div>
-            <div class="form-group">
-              <label>Password:</label>
-              <input type="text" class="form-control" v-model="user.password">
-            </div>
-            <div class="form-group">
-              <label>Password Confirmation:</label>
-              <input type="text" class="form-control" v-model="user.passwordConfirmation">
-            </div>
-            <input type="submit" class="btn btn-primary" value="Submit" /> 
-            <button v-on:click="destroyUser()">Delete User</button>
-          </form>
+        <div class="row justify-content-md-center">
+          <div class="col-6 border-all pagebox">
+            <form v-on:submit.prevent="editUser">
+              <h3 class="title margin-10px-top">Edit Profile</h3>
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
+              <div class="form-group">
+                <label>Username:</label>
+                <input type="text" class="form-control" v-model="user.username">
+              </div>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="text" class="form-control" v-model="user.email">
+              </div>
+              <div class="form-group">
+                <label>Password:</label>
+                <input type="text" class="form-control" v-model="user.password">
+              </div>
+              <div class="form-group">
+                <label>Password Confirmation:</label>
+                <input type="text" class="form-control" v-model="user.passwordConfirmation">
+              </div>
+              <input type="submit" class="btn btn-primary" value="Submit" /> 
+              <button class="btn btn-outline-danger btn-block margin-10px-bottom" v-on:click="destroyUser()">Delete User</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>

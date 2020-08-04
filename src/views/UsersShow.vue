@@ -47,17 +47,7 @@
             </div>
 
             <!-- start pager  -->
-            <div class="margin-50px-top">
-              <div class="pagination text-small text-uppercase text-extra-dark-gray">
-                <ul>
-                  <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
-                  <li class="active"><a href="javascript:void(0);">1</a></li>
-                  <li><a href="javascript:void(0);">2</a></li>
-                  <li><a href="javascript:void(0);">3</a></li>
-                  <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
-                </ul>
-              </div>
-            </div>
+
             <!-- end pager  -->
 
           </div>
