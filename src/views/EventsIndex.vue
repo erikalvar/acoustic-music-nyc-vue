@@ -1,208 +1,201 @@
 <template>
   <div class="events-index">
 
-    <!-- start blog Section -->
-    <section>
-      <div class="container">
-        <div class="row">
+  <!-- start blog Section -->
+  <section>
+    <div class="container">
+    <div class="row">
 
-          <!--  start blog left-->
-          <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
+      <!--  start blog left-->
+      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
 
-            <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate).slice(0, showNumber)">
-              <div v-if="event.moderator_id"> 
-                <div class="row no-gutters list-blog">
+      <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate).slice(0, showNumber)">
+        <div v-if="event.moderator_id"> 
+        <div class="row no-gutters list-blog">
 
-                  <div class="col-md-5">
-                    <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
-                  </div>
-                  <div class="col-md-7">
-                    <div class="card-body">
-
-                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
-                      <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
-                      <p>@{{ event.venue }}</p>
-
-                      <div class="meta">
-                        <span class="date">{{ cleanTime(event.start_time) }}</span>
-                        <span class="author">
-                          <button class="btn" v-on:click="toggleFavorite(event)" v-if="!event.favorited"><i class="far fa-star"></i></button>
-                          <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else><i class="fas fa-star" ></i></button>  
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- start pager  -->
-            <button class="btn butn" v-on:click="upNumber">Show more</button>
-            <!-- end pager  -->
-
+          <div class="col-md-5">
+          <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
           </div>
-          <!--  end blog left-->
+          <div class="col-md-7">
+          <div class="card-body">
 
-          <!--  start blog right-->
-          <div class="col-lg-4 col-md-12">
-            <div class="side-bar padding-30px-left md-no-padding-left" >
-              <div class="widget search padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Search Events" v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
-                  </div>
-                  
-                  <ul class="widget-list no-margin-bottom">
-                    <v-date-picker v-model="date" mode="single" is-inline/>
-                    <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
-                  </ul>
+            <!-- <span class="category"><a href="#!">Adventure</a></span> -->
 
-                </div>
-              </div>
+            <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
+            <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
+            <p>@{{ event.venue }}</p>
 
-              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <ul class="widget-list no-margin-bottom">
-                  <v-date-picker v-model="date" mode="single" is-inline/>
-                  <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
-                </ul>
-              </div> -->
-
-              <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Tags</h3>
-                </div>
-                <ul class="tags no-margin-bottom" v-for="tag in tags">
-                  <li class="tagbutton"><input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
-                  <label for="tag">#{{ tag.name }}</label></li>
-                </ul>
-              </div>
-
-              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Recent Posts</h3>
-                </div>
-                <div class="media margin-20px-bottom">
-                  <img src="img/blog/blog-6.jpg" class="mr-4" alt="" />
-                  <div class="media-body">
-                    <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">She is known for playing</a></h5>
-                    <span class="font-size14">20 Mar, 2020</span>
-                  </div>
-                </div>
-                <div class="media margin-20px-bottom">
-                  <img src="img/blog/blog-7.jpg" class="mr-4" alt="" />
-                  <div class="media-body">
-                    <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Craft a life you love</a></h5>
-                    <span class="font-size14">12 Mar, 2020</span>
-                  </div>
-                </div>
-                <div class="media margin-20px-bottom">
-                  <img src="img/blog/blog-8.jpg" class="mr-4" alt="" />
-                  <div class="media-body">
-                    <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Wonderland of ice place</a></h5>
-                    <span class="font-size14">17 Feb, 2020</span>
-                  </div>
-                </div>
-                <div class="media">
-                  <img src="img/blog/blog-5.jpg" class="mr-4" alt="" />
-                  <div class="media-body">
-                    <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Publish your passions</a></h5>
-                    <span class="font-size14">12 Jan, 2020</span>
-                  </div>
-                </div>
-              </div> -->
-
-              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-                <div class="widget-title margin-35px-bottom">
-                  <h3>Instagram</h3>
-                </div>
-                <ul class="insta-link text-center no-margin-bottom">
-                  <li>
-                    <a href="#"><img src="img/blog/insta-1.jpg" alt=""></a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/blog/insta-2.jpg" alt=""></a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/blog/insta-3.jpg" alt=""></a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/blog/insta-4.jpg" alt=""></a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/blog/insta-5.jpg" alt=""></a>
-                  </li>
-                  <li>
-                    <a href="#"><img src="img/blog/insta-6.jpg" alt=""></a>
-                  </li>
-                </ul>
-              </div> -->
-
-              <!-- <div class="widget">
-                <div class="bg-img text-center padding-30px-all cover-background" data-overlay-dark="5" data-background="img/content/testimonial.jpg">
-                  <div class="owl-carousel owl-theme" id="testmonials-carousel">
-                    <div>
-                      <i class="fas fa-quote-left font-size24 text-white margin-30px-bottom"></i>
-                      <p class="text-white">Stotam rem aperiam, eaquelim ipsa quae ab illo inventore veritatis et architecto.</p>
-                      <h6 class="no-margin-bottom text-white font-size18 font-weight-400">- John Mariya</h6>
-                    </div>
-                    <div>
-                      <i class="fas fa-quote-left font-size24 text-white margin-30px-bottom"></i>
-                      <p class="text-white">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit onsequuntur.</p>
-                      <h6 class="no-margin-bottom text-white font-size18 font-weight-400">- Maria Parker</h6>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-
+            <div class="meta">
+            <span class="date">{{ cleanTime(event.start_time) }}</span>
+            <span class="author">
+              <button class="btn" v-on:click="toggleFavorite(event)" v-if="!event.favorited"><i class="far fa-star"></i></button>
+              <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else><i class="fas fa-star" ></i></button>  
+            </span>
             </div>
           </div>
-          <!--  end blog right-->
-
+          </div>
+        </div>
         </div>
       </div>
-    </section>
-    <!-- end blog section -->
- 
- 
- 
-    <!-- <h1>Acoustic Music NYC</h1>
 
-    <v-date-picker
-    v-model="date"
-    mode="single"
-    is-inline
-    />
+      <!-- start pager  -->
+      <button class="btn butn" v-on:click="upNumber">Show more</button>
+      <!-- end pager  -->
 
-    <button v-on:click="resetDate">Reset</button>
-
-
-    <div>
-      <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
-    </div>
-
-    <div v-for="tag in tags">
-      <input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
-      <label for="tag">#{{ tag.name }}</label>
-    </div>
-
-    <div v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
-      <div v-if="event.moderator_id">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.favorites_info }}</p>
-        <p>@{{ event.venue }}</p>
-        <p>{{ cleanTime(event.start_time) }}</p>
-        <img v-bind:src="`${event.image_url}`">
-        <br>
-        <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
-        <br>
-        <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
-        <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>
       </div>
-      
-    </div> -->
+      <!--  end blog left-->
+
+      <!--  start blog right-->
+      <div class="col-lg-4 col-md-12">
+      <div class="side-bar padding-30px-left md-no-padding-left" >
+        <div class="widget search padding-30px-all md-padding-20px-all shadow-theme">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search Events" v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
+          <div class="input-group-append">
+          <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
+          </div>
+          
+          <ul class="widget-list no-margin-bottom">
+          <v-date-picker v-model="date" mode="single" is-inline/>
+          <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
+          </ul>
+
+        </div>
+        </div>
+
+
+        <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+          <div class="widget-title margin-35px-bottom">
+            <h3>Tags</h3>
+          </div>
+          <ul class="tags no-margin-bottom" id="check-buttons">
+            <li v-for="tag in tags"><input v-model="selectedTags" :value="tag" type="checkbox"><a href="jvascript:void(0)">{{ tag.name }}</a></li>
+          </ul>
+        </div>
+
+        <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+          <div class="widget-title margin-35px-bottom">
+            <h3>Recent Posts</h3>
+          </div>
+          <div class="media margin-20px-bottom">
+            <img src="img/blog/blog-6.jpg" class="mr-4" alt="" />
+            <div class="media-body">
+            <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">She is known for playing</a></h5>
+            <span class="font-size14">20 Mar, 2020</span>
+            </div>
+          </div>
+          <div class="media margin-20px-bottom">
+            <img src="img/blog/blog-7.jpg" class="mr-4" alt="" />
+            <div class="media-body">
+            <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Craft a life you love</a></h5>
+            <span class="font-size14">12 Mar, 2020</span>
+            </div>
+          </div>
+          <div class="media margin-20px-bottom">
+            <img src="img/blog/blog-8.jpg" class="mr-4" alt="" />
+            <div class="media-body">
+            <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Wonderland of ice place</a></h5>
+            <span class="font-size14">17 Feb, 2020</span>
+            </div>
+          </div>
+          <div class="media">
+            <img src="img/blog/blog-5.jpg" class="mr-4" alt="" />
+            <div class="media-body">
+            <h5 class="no-margin-top margin-5px-bottom font-size15 font-weight-500"><a href="#" class="text-extra-dark-gray">Publish your passions</a></h5>
+            <span class="font-size14">12 Jan, 2020</span>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+        <div class="widget-title margin-35px-bottom">
+          <h3>Instagram</h3>
+        </div>
+        <ul class="insta-link text-center no-margin-bottom">
+          <li>
+          <a href="#"><img src="img/blog/insta-1.jpg" alt=""></a>
+          </li>
+          <li>
+          <a href="#"><img src="img/blog/insta-2.jpg" alt=""></a>
+          </li>
+          <li>
+          <a href="#"><img src="img/blog/insta-3.jpg" alt=""></a>
+          </li>
+          <li>
+          <a href="#"><img src="img/blog/insta-4.jpg" alt=""></a>
+          </li>
+          <li>
+          <a href="#"><img src="img/blog/insta-5.jpg" alt=""></a>
+          </li>
+          <li>
+          <a href="#"><img src="img/blog/insta-6.jpg" alt=""></a>
+          </li>
+        </ul>
+        </div> -->
+
+        <!-- <div class="widget">
+        <div class="bg-img text-center padding-30px-all cover-background" data-overlay-dark="5" data-background="img/content/testimonial.jpg">
+          <div class="owl-carousel owl-theme" id="testmonials-carousel">
+          <div>
+            <i class="fas fa-quote-left font-size24 text-white margin-30px-bottom"></i>
+            <p class="text-white">Stotam rem aperiam, eaquelim ipsa quae ab illo inventore veritatis et architecto.</p>
+            <h6 class="no-margin-bottom text-white font-size18 font-weight-400">- John Mariya</h6>
+          </div>
+          <div>
+            <i class="fas fa-quote-left font-size24 text-white margin-30px-bottom"></i>
+            <p class="text-white">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit onsequuntur.</p>
+            <h6 class="no-margin-bottom text-white font-size18 font-weight-400">- Maria Parker</h6>
+          </div>
+          </div>
+        </div>
+        </div> -->
+
+      </div>
+      </div>
+      <!--  end blog right-->
+
+    </div>
+    </div>
+  </section>
+  <!-- end blog section -->
+ 
+ 
+ 
+  <!-- <h1>Acoustic Music NYC</h1>
+
+  <v-date-picker
+  v-model="date"
+  mode="single"
+  is-inline
+  />
+
+  <button v-on:click="resetDate">Reset</button>
+
+
+  <div>
+    <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
+  </div>
+
+  <div v-for="tag in tags">
+    <input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
+    <label for="tag">#{{ tag.name }}</label>
+  </div>
+
+  <div v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
+    <div v-if="event.moderator_id">
+    <h3>{{ event.title }}</h3>
+    <p>{{ event.favorites_info }}</p>
+    <p>@{{ event.venue }}</p>
+    <p>{{ cleanTime(event.start_time) }}</p>
+    <img v-bind:src="`${event.image_url}`">
+    <br>
+    <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
+    <br>
+    <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
+    <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>
+    </div>
+    
+  </div> -->
 
   </div>
 </template>
