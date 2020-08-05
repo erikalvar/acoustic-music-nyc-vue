@@ -3,7 +3,7 @@
     <!-- start main-wrapper section -->
     <div class="main-wrapper">
       <!-- start blog Section -->
-      <section>
+      <section class="background">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-10 col-md-11">

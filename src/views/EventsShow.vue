@@ -13,7 +13,7 @@
             </h3>
             <img
               v-bind:src="`${currentEvent.image_url}`"
-              class="margin-30px-bottom"
+              class="center margin-30px-bottom"
               alt="..."
             /><br />
             <span class="text-extra-dark-gray font-size14"
@@ -40,18 +40,17 @@
                 }}</a>
               </p>
             </div>
+
             <button
-              v-on:click="toggleFavorite()"
+              class="btn"
+              v-on:click="toggleFavorite(event)"
               v-if="!currentEvent.favorited"
             >
-              Favorite
+              <i class="far fa-star"></i>
             </button>
-            <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
-            <div>
-              <router-link :to="`/events/${currentEvent.id}/edit`"
-                >Edit</router-link
-              >
-            </div>
+            <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else>
+              <i class="fas fa-star"></i>
+            </button>
 
             <div
               class="widget margin-30px-all md-padding-20px-all shadow-theme"
@@ -64,6 +63,11 @@
                   <a href="jvascript:void(0)">{{ tag.name }}</a>
                 </li>
               </ul>
+            </div>
+            <div class="right">
+              <router-link :to="`/events/${currentEvent.id}/edit`"
+                >Edit</router-link
+              >
             </div>
 
             <!-- end content -->
@@ -139,28 +143,6 @@ export default {
           this.currentEvent.favorited = response.data.favorited;
         });
     },
-    // favoriteEvent: function () {
-    //   var params = {
-    //     event_id: this.currentEvent.id,
-    //   };
-    //   axios
-    //     .post("/api/favorites", params)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.response.data.errors);
-    //       this.errors = error.response.data.errors;
-    //     });
-    // },
-    // getUserId: function () {
-    //   return localStorage.getItem("user_id");
-    // },
-    // unFavoriteEvent: function () {
-    //   axios.delete(`/api/favorites/${this.current.id}`).then((response) => {
-    //     console.log("Event successfully un-favorited", response.data);
-    //   });
-    // },
   },
 };
 </script>

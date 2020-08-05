@@ -48,7 +48,7 @@
                             v-on:click="toggleFavorite(event)"
                             v-if="!event.favorited"
                           >
-                            <i class="far fa-star"></i>
+                            <i class="fas fa-star"></i>
                           </button>
                           <button
                             class="btn btnf"
@@ -66,7 +66,9 @@
             </div>
 
             <!-- start pager  -->
-            <button class="btn butn" v-on:click="upNumber">Show more</button>
+            <button class="btn butn centerStuff" v-on:click="upNumber">
+              Show more
+            </button>
             <!-- end pager  -->
           </div>
           <!--  end blog left-->
@@ -113,7 +115,7 @@
                   <h3 class="heading">Tags</h3>
                 </div>
                 <ul class="tags no-margin-bottom" id="check-buttons">
-                  <li v-for="tag in tags">
+                  <li v-for="tag in tags" class="tag-btn">
                     <input
                       v-model="selectedTags"
                       :value="tag"
@@ -249,20 +251,7 @@
   </div>
 </template>
 
-<style>
-.btn {
-  color: black;
-  border: none;
-  font-size: 24px;
-  background: none;
-}
-.btnf {
-  color: gold;
-  border: none;
-  font-size: 24px;
-  background: none;
-}
-</style>
+<style></style>
 
 <script>
 import axios from "axios";

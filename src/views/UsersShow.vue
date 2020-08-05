@@ -1,13 +1,13 @@
 <template>
   <div class="users-show">
     <!-- start blog Section -->
-    <section>
+    <section class="background">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-12 col-md-10">
             <!-- start content  -->
             <div
-              class="bg-light padding-40px-all xs-padding-30px-all margin-30px-bottom border-all"
+              class="bg-light card-event heading padding-40px-all xs-padding-30px-all margin-30px-bottom margin-30px-top border-all"
             >
               <h3 class="heading border-bottom padding-10px-bottom">
                 Account Info
@@ -47,7 +47,7 @@
 
             <div class="col-lg-12 col-md-12 sm-margin-50px-bottom">
               <div
-                class="card margin-20px-bottom border-0 bg-light rounded-0"
+                class="card margin-20px-bottom border-all bg-light rounded-0"
                 v-for="favoriteEvent in favoritedEvents"
               >
                 <div class="row no-gutters list-blog">

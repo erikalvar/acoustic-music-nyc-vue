@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <section>
+    <section class="background">
       <div class="container">
         <div class="row justify-content-md-center">
           <div class="col-6 border-all pagebox">
@@ -35,7 +35,7 @@
               </div>
               <input
                 type="submit"
-                class="btn btn-primary margin-10px-bottom"
+                class="btn butn margin-10px-bottom"
                 value="Submit"
               />
             </form>

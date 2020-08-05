@@ -1,6 +1,6 @@
 <template>
   <div class="events-new">
-    <section>
+    <section class="background">
       <div class="container">
         <div class="row">
           <!--  start blog left-->
@@ -8,7 +8,7 @@
             class="col-lg-8 col-md-12 sm-margin-50px-bottom border-all pagebox padding-20px-bottom"
           >
             <form v-on:submit.prevent="createEvent">
-              <h1 class="heading">Submit an Event</h1>
+              <h1 class="heading magin-20px-top">Submit an Event</h1>
               <p>
                 Once an event is created it will be sent to moderators for
                 approval. Only after it is approved will it show up on the home
@@ -86,7 +86,7 @@
                   use12-hour
                 ></datetime>
               </div>
-              <input type="submit" class="btn btn-primary" value="Submit" />
+              <input type="submit" class="btn butn" value="Submit" />
             </form>
           </div>
           <!--  end blog left-->
