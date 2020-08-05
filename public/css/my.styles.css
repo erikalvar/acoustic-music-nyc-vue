@@ -8,10 +8,10 @@
 .pagebox {
   background-color: #f0f0ec;
 }
-.tag-btn {
+/* .tag-btn {
   border-radius: 5px;
   background: lightblue;
-  margin: 5px;
+  margin: 5px; */
 }
 .chk-btn {
   offset-position: -20px;
@@ -80,13 +80,13 @@
   text-align: right;
   opacity: 0;
 }
-.btn {
+.btnuf {
   color: black;
   border: none;
   font-size: 24px;
   background: none;
 }
-.btn:hover {
+.btnuf:hover {
   color: gold;
   border: none;
   font-size: 24px;
@@ -97,4 +97,12 @@
   border: none;
   font-size: 24px;
   background: none;
+}
+.btn {
+  background-color: #004064;
+  margin-bottom: 5px;
+  border: none;
+}
+.ltgrey {
+  background-color: lightgrey;
 }

@@ -18,19 +18,23 @@
                   class="row no-gutters list-blog card-event no-padding no-margin"
                 >
                   <div class="col-md-5">
-                    <div
-                      class="bg-img cover-background h-100 min-height-150 
-          "
+                    <!-- <div
+                      class="bg-img cover-background h-100 min-height-150"
                       data-overlay-dark="0"
                       :data-background="`${event.image_url}`"
                       :style="`background-image: url(${event.image_url});`"
-                    ></div>
+                    ></div> -->
+                    <router-link v-bind:to="`/events/${event.id}`">
+                      <div
+                        class="bg-img cover-background h-100 min-height-150"
+                        data-overlay-dark="0"
+                        :data-background="`${event.image_url}`"
+                        :style="`background-image: url(${event.image_url});`"
+                      ></div>
+                    </router-link>
                   </div>
                   <div class="col-md-7">
                     <div class="card-body">
-                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
                       <h5>
                         <router-link v-bind:to="`/events/${event.id}`">{{
                           event.title
@@ -44,14 +48,14 @@
                         }}</span>
                         <span class="author">
                           <button
-                            class="btn"
+                            class="btnuf"
                             v-on:click="toggleFavorite(event)"
                             v-if="!event.favorited"
                           >
                             <i class="fas fa-star"></i>
                           </button>
                           <button
-                            class="btn btnf"
+                            class="btnf"
                             v-on:click="toggleFavorite(event)"
                             v-else
                           >
@@ -66,9 +70,12 @@
             </div>
 
             <!-- start pager  -->
-            <button class="btn butn centerStuff" v-on:click="upNumber">
-              Show more
-            </button>
+            <div class="text-center">
+              <button class="btn butn" v-on:click="upNumber">
+                Show more
+              </button>
+            </div>
+
             <!-- end pager  -->
           </div>
           <!--  end blog left-->
@@ -79,7 +86,7 @@
               <div
                 class="widget search padding-30px-all md-padding-20px-all shadow-theme"
               >
-                <div class="input-group mb-3">
+                <div class="d-flex justify-content-center input-group mb-3">
                   <input
                     type="text"
                     class="form-control"
@@ -99,9 +106,12 @@
                     </button>
                   </div>
 
-                  <div class="widget-list no-margin">
+                  <div class="widget-list no-margin text-center">
                     <v-date-picker v-model="date" mode="single" is-inline />
-                    <button class="btn btn-primary" v-on:click="resetDate">
+                    <button
+                      class="btn btn-primary text-center"
+                      v-on:click="resetDate"
+                    >
                       Reset Calendar
                     </button>
                   </div>
@@ -212,42 +222,6 @@
       </div>
     </section>
     <!-- end blog section -->
-
-    <!-- <h1>Acoustic Music NYC</h1>
-
-  <v-date-picker
-  v-model="date"
-  mode="single"
-  is-inline
-  />
-
-  <button v-on:click="resetDate">Reset</button>
-
-
-  <div>
-    <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
-  </div>
-
-  <div v-for="tag in tags">
-    <input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
-    <label for="tag">#{{ tag.name }}</label>
-  </div>
-
-  <div v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate)">
-    <div v-if="event.moderator_id">
-    <h3>{{ event.title }}</h3>
-    <p>{{ event.favorites_info }}</p>
-    <p>@{{ event.venue }}</p>
-    <p>{{ cleanTime(event.start_time) }}</p>
-    <img v-bind:src="`${event.image_url}`">
-    <br>
-    <router-link v-bind:to="`/events/${event.id}`">Show Info</router-link>
-    <br>
-    <button v-on:click="toggleFavorite(event)" v-if="!event.favorited">Favorite</button>
-    <button v-on:click="toggleFavorite(event)" v-else>Unfavorite</button>
-    </div>
-    
-  </div> -->
   </div>
 </template>
 

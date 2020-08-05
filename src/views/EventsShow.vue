@@ -42,13 +42,13 @@
             </div>
 
             <button
-              class="btn"
-              v-on:click="toggleFavorite(event)"
+              class="btnuf"
+              v-on:click="toggleFavorite()"
               v-if="!currentEvent.favorited"
             >
-              <i class="far fa-star"></i>
+              <i class="fas fa-star"></i>
             </button>
-            <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else>
+            <button class="btnf" v-on:click="toggleFavorite()" v-else>
               <i class="fas fa-star"></i>
             </button>
 
