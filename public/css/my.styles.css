@@ -2,16 +2,87 @@
   text-align: center;
 }
 .navhover {
+  color: #f9f9f7;
   transition-duration: 0.4s;
 }
-.navhover:hover {
-  color: blue;
-}
 .pagebox {
-  background-color: lightblue;
+  background-color: #f0f0ec;
 }
 .tagbutton {
   border-radius: 5px;
   background: #73ad21;
   margin: 5px;
+}
+.navbar-default {
+  background-color: #004064;
+}
+.background {
+  background-color: #f9f9f7;
+}
+.footer {
+  background-color: #004064;
+}
+.card-event {
+  /* background-color: #6c8a9f; */
+  background-color: #f0f0ec;
+}
+.navbar-nav {
+  color: #f9f9f7;
+}
+.navtext {
+  color: #f9f9f7;
+}
+.navbar-nav > li > a {
+  color: #f9f9f7;
+}
+.navbar-nav > li > a:hover {
+  color: lightgrey;
+}
+.navbar {
+  background-color: #004064;
+}
+.scrollHeader {
+  background-color: #004064;
+}
+/* input.chk-btn {
+  display: none;
+}
+input.chk-btn + label {
+  border: 1px solid grey;
+  background: ghoswhite;
+  padding: 5px 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+input.chk-btn:not(:checked) + label:hover {
+  box-shadow: 0px 1px 3px;
+}
+input.chk-btn + label:active,
+input.chk-btn:checked + label {
+  box-shadow: 0px 0px 3px inset;
+  background: #eee;
+} */
+.background {
+  padding-top: 20px;
+}
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 0px;
+  align-items: center;
+  align-content: center;
+}
+.colorStuff {
+  background-color: #004064;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 0px;
+  margin-right: 0px;
+  max-width: 1500px;
+}
+.heading {
+  text-align: center;
+}
+.centerStuff {
+  align-items: stretch;
 }

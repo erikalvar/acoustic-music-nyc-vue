@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-
     <!-- start header section -->
     <header>
       <div class="navbar-default">
@@ -20,32 +19,53 @@
         </div> -->
         <!-- end top search -->
 
-        <div class="container">
+        <div class="container no-margin-bottom colorStuff">
           <div class="row align-items-center">
-            <div class="col-md-12">
+            <div class="col-md-12 ">
               <div class="menu_area">
                 <nav class="navbar navbar-expand-lg navbar-light no-padding">
-
                   <div class="navbar-header navbar-header-custom">
                     <!-- start logo -->
-                    <router-link to="/" class="navbar-brand width-150px sm-width-180px xs-width-150px"><img id="logo" src="/img/demologo.png " alt="logo"></router-link>
+                    <router-link
+                      to="/"
+                      class="navbar-brand width-150px sm-width-180px xs-width-150px"
+                    >
+                      <img id="logo" src="/img/demologo.png " alt="logo" />
+                    </router-link>
                     <!-- end logo -->
                   </div>
 
                   <div class="navbar-toggler"></div>
 
                   <!-- start menu area -->
-                  <ul class="navbar-nav ml-auto" id="nav" style="display: none;">
-                    <li><router-link to="/" class="navhover">Home</router-link></li>
+                  <ul
+                    class="navbar-nav ml-auto"
+                    id="nav"
+                    style="display: none;"
+                  >
+                    <li class="navtext">
+                      <router-link to="/" class="navhover">Home</router-link>
+                    </li>
                     <li><router-link to="/about">About</router-link></li>
-                    <li v-if="isLoggedIn()"><router-link to="/events/new">Submit Event</router-link></li>
-                    <li v-if="!isLoggedIn()"><router-link to="/signup">Signup</router-link></li>
-                    <li v-if="!isLoggedIn()"><router-link to="/login">Login</router-link></li>
-                    <li v-if="isLoggedIn()"><router-link to="/logout">Logout</router-link></li>
-                    <li v-if="isLoggedIn()"><router-link v-bind:to="`/users/${getUserId()}`">User Profile</router-link></li>
+                    <li v-if="isLoggedIn()">
+                      <router-link to="/events/new">Submit Event</router-link>
+                    </li>
+                    <li v-if="!isLoggedIn()">
+                      <router-link to="/signup">Signup</router-link>
+                    </li>
+                    <li v-if="!isLoggedIn()">
+                      <router-link to="/login">Login</router-link>
+                    </li>
+                    <li v-if="isLoggedIn()">
+                      <router-link to="/logout">Logout</router-link>
+                    </li>
+                    <li v-if="isLoggedIn()">
+                      <router-link v-bind:to="`/users/${getUserId()}`"
+                        >User Profile</router-link
+                      >
+                    </li>
                   </ul>
                   <!-- end menu area -->
-
                 </nav>
               </div>
             </div>
@@ -64,37 +84,50 @@
       <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link> |
       <router-link v-if="isLoggedIn()" v-bind:to="`/users/${getUserId()}`">User Profile</router-link>
     </div> -->
-    
-    <router-view/>
+
+    <router-view />
 
     <!-- start footer section -->
-    <footer class="bg-light">
-      <div class="padding-30px-top md-padding-30px-top sm-padding-30px-top">
+    <footer class="footer">
+      <div class="padding-10px-top md-padding-10px-top sm-padding-10px-top">
         <div class="container">
-          
-          <div class="padding-30px-bottom margin-60px-top row">
+          <div class="padding-20px-bottom margin-10px-top row">
             <div class="col-12">
-              <div class="float-left xs-width-100 text-center xs-margin-5px-bottom">
+              <div
+                class="float-left xs-width-100 text-center xs-margin-5px-bottom"
+              >
                 <ul class="social-links no-margin">
                   <li>
-                    <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                    <a href="javascript:void(0)"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                    <a href="javascript:void(0)"
+                      ><i class="fab fa-twitter"></i
+                    ></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                    <a href="javascript:void(0)"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="javascript:void(0)"
+                      ><i class="fab fa-linkedin-in"></i
+                    ></a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)"><i class="fab fa-dribbble"></i></a>
+                    <a href="javascript:void(0)"
+                      ><i class="fab fa-dribbble"></i
+                    ></a>
                   </li>
                 </ul>
               </div>
               <div class="float-right xs-width-100 text-center">
-                <p class="text-medium-gray margin-5px-top xs-no-margin-top">&copy; 2020 Acousti Music NYC</p>
+                <p class="text-medium-gray margin-5px-top xs-no-margin-top">
+                  &copy; 2020 Acoustic Music NYC
+                </p>
               </div>
             </div>
           </div>
@@ -105,22 +138,21 @@
   </div>
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
       flashMessage: "",
       userId: "",
     };
   },
   methods: {
-    isLoggedIn: function () {
+    isLoggedIn: function() {
       return localStorage.getItem("jwt");
     },
-    getUserId: function () {
+    getUserId: function() {
       return localStorage.getItem("user_id");
     },
   },

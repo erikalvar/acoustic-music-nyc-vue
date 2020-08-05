@@ -37,7 +37,7 @@
               </div>
               <div class="form-group">
                 <label>Start Time:</label>
-                <datetime type="datetime" v-model="event.end_time" use12-hour></datetime>
+                <datetime type="datetime" v-model="event.start_time" use12-hour></datetime>
               </div>
               <div class="form-group">
                 <label>End Time:</label>

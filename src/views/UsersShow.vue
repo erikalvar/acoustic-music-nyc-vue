@@ -1,67 +1,110 @@
 <template>
   <div class="users-show">
-
-  <!-- start blog Section -->
+    <!-- start blog Section -->
     <section>
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-10">
+          <div class="col-lg-12 col-md-10">
             <!-- start content  -->
-            <div class="bg-light padding-70px-all xs-padding-30px-all margin-30px-bottom border-all">
-              
-              <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600">Username: {{ user.username }}</span>
-              <p></p><span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600">Email: {{ user.email }}</span>
-              <br><br>
-              <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"><router-link :to="`/users/${user.id}/edit`">Edit Profile</router-link></span>
-              <br>
-              <span class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"><router-link v-if="user.moderator==true" to="/events/approve">Approve Events</router-link></span>
+            <div
+              class="bg-light padding-40px-all xs-padding-30px-all margin-30px-bottom border-all"
+            >
+              <h3 class="heading border-bottom padding-10px-bottom">
+                Account Info
+              </h3>
+              <span
+                class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"
+                >Username: {{ user.username }}</span
+              >
+              <p></p>
+              <span
+                class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"
+                >Email: {{ user.email }}</span
+              >
+              <br /><br />
+              <span
+                class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"
+                ><router-link class="btn butn" :to="`/users/${user.id}/edit`"
+                  >Edit Profile</router-link
+                ></span
+              >
+              <br />
+              <span
+                class="font-size22 xs-font-size20 text-extra-dark-gray font-weight-600"
+                ><router-link
+                  class="btn butn"
+                  v-if="user.moderator == true"
+                  to="/events/approve"
+                  >Approve Events</router-link
+                ></span
+              >
             </div>
-            <h5 class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30">Favorited Events</h5>
+            <h5
+              class="heading margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30"
+            >
+              Favorited Events
+            </h5>
 
-            <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
+            <div class="col-lg-12 col-md-12 sm-margin-50px-bottom">
+              <div
+                class="card margin-20px-bottom border-0 bg-light rounded-0"
+                v-for="favoriteEvent in favoritedEvents"
+              >
+                <div class="row no-gutters list-blog">
+                  <div class="col-md-5">
+                    <div
+                      class="bg-img cover-background h-100 min-height-150"
+                      data-overlay-dark="0"
+                      :data-background="`${favoriteEvent.image_url}`"
+                      :style="
+                        `background-image: url(${favoriteEvent.image_url});`
+                      "
+                    ></div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
 
-            <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="favoriteEvent in favoritedEvents">
-              <div class="row no-gutters list-blog">
+                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
+                      <h5>
+                        <router-link
+                          v-bind:to="`/events/${favoriteEvent.id}`"
+                          >{{ favoriteEvent.title }}</router-link
+                        >
+                      </h5>
+                      <p>@{{ favoriteEvent.venue }}</p>
 
-                <div class="col-md-5">
-                  <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${favoriteEvent.image_url}`" :style="`background-image: url(${favoriteEvent.image_url});`"></div>
-                </div>
-                <div class="col-md-7">
-                  <div class="card-body">
-
-                    <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-                    <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
-                    <h5><router-link v-bind:to="`/events/${favoriteEvent.id}`">{{ favoriteEvent.title }}</router-link></h5>
-                    <p>@{{ favoriteEvent.venue }}</p>
-
-                    <div class="meta">
-                      <span class="date">{{ cleanTime(favoriteEvent.start_time) }}</span>
-                      <span class="author">
-                        <button class="btnf" v-on:click="toggleFavorite(favoriteEvent)"><i class="fas fa-star" ></i></button> 
-                      </span>
+                      <div class="meta">
+                        <span class="date">{{
+                          cleanTime(favoriteEvent.start_time)
+                        }}</span>
+                        <span class="author">
+                          <button
+                            class="btnf"
+                            v-on:click="toggleFavorite(favoriteEvent)"
+                          >
+                            <i class="fas fa-star"></i>
+                          </button>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- start pager  -->
+
+              <!-- end pager  -->
             </div>
 
-            <!-- start pager  -->
-
-            <!-- end pager  -->
-
-          </div>
-
-
             <!-- end content -->
-
           </div>
         </div>
       </div>
     </section>
     <!-- end blog section -->
 
-  <!-- <p>Username: {{ user.username }}</p>
+    <!-- <p>Username: {{ user.username }}</p>
   <p>Email: {{ user.email }}</p>
 
   <div>
@@ -88,19 +131,20 @@
     
     </div>
   </div> -->
-
-
   </div>
 </template>
 
 <style>
+.h5 {
+  -ms-flex-align: center;
+}
 </style>
 
 <script>
 import axios from "axios";
 import moment from "moment";
 export default {
-  data: function () {
+  data: function() {
     return {
       message: "Welcome to Events Show",
       user: {},
@@ -108,7 +152,7 @@ export default {
       // favoritedEventIds: [],
     };
   },
-  created: function () {
+  created: function() {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
       // console.log(response.data);
       this.user = response.data;
@@ -125,10 +169,10 @@ export default {
     });
   },
   methods: {
-    cleanTime: function (dateTime) {
+    cleanTime: function(dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
-    toggleFavorite: function (favoriteEvent) {
+    toggleFavorite: function(favoriteEvent) {
       var params = {
         id: favoriteEvent.id,
       };

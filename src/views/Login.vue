@@ -5,27 +5,33 @@
         <div class="row justify-content-md-center">
           <div class="col-6 border-all pagebox">
             <form v-on:submit.prevent="submit">
-              <h3 class="title margin-10px-top">Create Profile</h3>
+              <h3 class="title margin-10px-top">Login</h3>
               <ul>
                 <li class="text-danger" v-for="error in errors">{{ error }}</li>
               </ul>
               <div class="form-group">
                 <label>Email:</label>
-                <input type="text" class="form-control" v-model="email">
+                <input type="text" class="form-control" v-model="email" />
               </div>
               <div class="form-group">
                 <label>Password:</label>
-                <input type="text" class="form-control" v-model="password">
+                <input
+                  type="password"
+                  class="form-control"
+                  v-model="password"
+                />
               </div>
-              <input type="submit" class="btn btn-primary margin-10px-bottom" value="Submit" />             </form>
+              <input
+                type="submit"
+                class="btn btn-primary margin-10px-bottom"
+                value="Submit"
+              />
+            </form>
           </div>
         </div>
       </div>
     </section>
-    
-    
-    
-    
+
     <!-- <form v-on:submit.prevent="submit()">
       <h1>Login</h1>
       <ul>
@@ -48,7 +54,7 @@
 import axios from "axios";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       email: "",
       password: "",
@@ -56,7 +62,7 @@ export default {
     };
   },
   methods: {
-    submit: function () {
+    submit: function() {
       var params = {
         email: this.email,
         password: this.password,

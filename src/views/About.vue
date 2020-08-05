@@ -1,58 +1,91 @@
 <template>
   <div class="about">
-
     <!-- start main-wrapper section -->
-  <div class="main-wrapper">
+    <div class="main-wrapper">
+      <!-- start blog Section -->
+      <section>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-11">
+              <!-- start content  -->
 
-    <!-- start blog Section -->
-    <section>
-      <div class="container">
+              <h5
+                class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30 heading"
+              >
+                What is Acoustic Music NYC and how did it come to be
+              </h5>
+              <p>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque
+                inventore veritatis.
+              </p>
 
-        <div class="row justify-content-center">
-          <div class="col-lg-10 col-md-11">
-            <!-- start content  -->
-            
-            <h5 class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30">What is Acoustic Music NYC and how did it come to be</h5>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque inventore veritatis.</p>
+              <p>
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum. Sed ut
+                perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae.
+              </p>
 
-            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.</p>
+              <p>
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit, sed quia non numquam eius modi
+                tempora incidunt ut labore et dolore magnam aliquam quaerat
+                voluptatem.
+              </p>
 
-            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+              <h5>Some goals:</h5>
+              <ul class="list-style2 margin-30px-bottom">
+                <li><i class="ti-check"></i>Nemo enim ipsam voluptatem</li>
+                <li><i class="ti-check"></i>Duis aute irure dolor</li>
+                <li><i class="ti-check"></i>Ut enim ad minim veniam</li>
+                <li><i class="ti-check"></i>Excepteur sint occaecat</li>
+              </ul>
 
-            <h5>Some goals:</h5>
-            <ul class="list-style2 margin-30px-bottom">
-              <li><i class="ti-check"></i>Nemo enim ipsam voluptatem</li>
-              <li><i class="ti-check"></i>Duis aute irure dolor</li>
-              <li><i class="ti-check"></i>Ut enim ad minim veniam</li>
-              <li><i class="ti-check"></i>Excepteur sint occaecat</li>
-            </ul>
-
-            <p class="font-size16">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-            <div class="row align-items-center">
-              <div class="col-sm-5">
-                <img src="/img/profilepic.jpg" alt="">
+              <p class="font-size16">
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa
+                qui officia deserunt mollit anim id est laborum. Sed ut
+                perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore veritatis et quasi architecto beatae
+                vitae dicta sunt explicabo.
+              </p>
+              <div class="row align-items-center">
+                <div class="col-sm-5">
+                  <img src="/img/profilepic.jpg" alt="" />
+                </div>
+                <div class="col-sm-7">
+                  <p>
+                    ut perspiciatis unde omnis iste natus error sit voluptatem
+                    accusantium doloremque laudantium, totam rem aperiam, eaque
+                    ipsa quae ab illo inventore veritatis et quasi architecto
+                    beatae vitae dicta sunt explicabo. Nemo enim ipsam
+                    voluptatem quia voluptas.
+                  </p>
+                  <p>
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat laborum.
+                  </p>
+                </div>
               </div>
-              <div class="col-sm-7">
-                <p> ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat laborum.</p>
-              </div>
+              <p class="margin-50px-bottom">
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+                quae ab illo inventore.
+              </p>
+
+              <!-- end content -->
             </div>
-            <p class="margin-50px-bottom">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.</p>
-
-            <!-- end content -->
-
           </div>
         </div>
-      </div>
-    </section>
-    <!-- end blog section -->
-
-  </div>
-  <!-- end main-wrapper section -->
-
+      </section>
+      <!-- end blog section -->
+    </div>
+    <!-- end main-wrapper section -->
 
     <!-- <h1>About Us</h1>
     <p>Acoustic Music NYC was created to...</p> -->
   </div>
 </template>
-

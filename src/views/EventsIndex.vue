@@ -1,79 +1,133 @@
 <template>
   <div class="events-index">
+    <!-- start blog Section -->
+    <section class="background">
+      <div class="container">
+        <div class="row">
+          <!--  start blog left-->
+          <div class="col-lg-8 col-md-12 sm-margin-50px-bottom centerStuff">
+            <div
+              class="card margin-10px-bottom border-width-1 bg-light rounded-0 "
+              v-for="event in filterBy(
+                filterBy(filteredByTag, titleFilter),
+                formattedDate
+              ).slice(0, showNumber)"
+            >
+              <div v-if="event.moderator_id">
+                <div
+                  class="row no-gutters list-blog card-event no-padding no-margin"
+                >
+                  <div class="col-md-5">
+                    <div
+                      class="bg-img cover-background h-100 min-height-150 
+          "
+                      data-overlay-dark="0"
+                      :data-background="`${event.image_url}`"
+                      :style="`background-image: url(${event.image_url});`"
+                    ></div>
+                  </div>
+                  <div class="col-md-7">
+                    <div class="card-body">
+                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
 
-  <!-- start blog Section -->
-  <section>
-    <div class="container">
-    <div class="row">
+                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
+                      <h5>
+                        <router-link v-bind:to="`/events/${event.id}`">{{
+                          event.title
+                        }}</router-link>
+                      </h5>
+                      <p>@{{ event.venue }}</p>
 
-      <!--  start blog left-->
-      <div class="col-lg-8 col-md-12 sm-margin-50px-bottom">
-
-      <div class="card margin-40px-bottom border-0 bg-light rounded-0" v-for="event in filterBy(filterBy(filteredByTag, titleFilter), formattedDate).slice(0, showNumber)">
-        <div v-if="event.moderator_id"> 
-        <div class="row no-gutters list-blog">
-
-          <div class="col-md-5">
-          <div class="bg-img cover-background h-100 min-height-250" data-overlay-dark="0" :data-background="`${event.image_url}`" :style="`background-image: url(${event.image_url});`"></div>
-          </div>
-          <div class="col-md-7">
-          <div class="card-body">
-
-            <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-            <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
-            <h5><router-link v-bind:to="`/events/${event.id}`">{{ event.title }}</router-link></h5>
-            <p>@{{ event.venue }}</p>
-
-            <div class="meta">
-            <span class="date">{{ cleanTime(event.start_time) }}</span>
-            <span class="author">
-              <button class="btn" v-on:click="toggleFavorite(event)" v-if="!event.favorited"><i class="far fa-star"></i></button>
-              <button class="btn btnf" v-on:click="toggleFavorite(event)" v-else><i class="fas fa-star" ></i></button>  
-            </span>
+                      <div class="meta">
+                        <span class="date">{{
+                          cleanTime(event.start_time)
+                        }}</span>
+                        <span class="author">
+                          <button
+                            class="btn"
+                            v-on:click="toggleFavorite(event)"
+                            v-if="!event.favorited"
+                          >
+                            <i class="far fa-star"></i>
+                          </button>
+                          <button
+                            class="btn btnf"
+                            v-on:click="toggleFavorite(event)"
+                            v-else
+                          >
+                            <i class="fas fa-star"></i>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <!-- start pager  -->
+            <button class="btn butn" v-on:click="upNumber">Show more</button>
+            <!-- end pager  -->
           </div>
-          </div>
-        </div>
-        </div>
-      </div>
+          <!--  end blog left-->
 
-      <!-- start pager  -->
-      <button class="btn butn" v-on:click="upNumber">Show more</button>
-      <!-- end pager  -->
+          <!--  start blog right-->
+          <div class="col-lg-4 col-md-12">
+            <div class="side-bar padding-30px md-no-padding-left">
+              <div
+                class="widget search padding-30px-all md-padding-20px-all shadow-theme"
+              >
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Search Events"
+                    v-model="titleFilter"
+                    list="titles"
+                    aria-label="search events"
+                    aria-describedby="button-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-primary"
+                      type="button"
+                      id="button-addon2"
+                    >
+                      <span class="ti-search"></span>
+                    </button>
+                  </div>
 
-      </div>
-      <!--  end blog left-->
+                  <div class="widget-list no-margin">
+                    <v-date-picker v-model="date" mode="single" is-inline />
+                    <button class="btn btn-primary" v-on:click="resetDate">
+                      Reset Calendar
+                    </button>
+                  </div>
+                </div>
+              </div>
 
-      <!--  start blog right-->
-      <div class="col-lg-4 col-md-12">
-      <div class="side-bar padding-30px-left md-no-padding-left" >
-        <div class="widget search padding-30px-all md-padding-20px-all shadow-theme">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search Events" v-model="titleFilter" list="titles" aria-label="search events" aria-describedby="button-addon2">
-          <div class="input-group-append">
-          <button class="btn btn-primary" type="button" id="button-addon2"><span class="ti-search"></span></button>
-          </div>
-          
-          <ul class="widget-list no-margin-bottom">
-          <v-date-picker v-model="date" mode="single" is-inline/>
-          <button class="btn btn-primary" v-on:click="resetDate">Reset</button>
-          </ul>
+              <div
+                class="widget padding-30px-all md-padding-20px-all shadow-theme"
+              >
+                <div class="widget-title margin-35px-bottom">
+                  <h3 class="heading">Tags</h3>
+                </div>
+                <ul class="tags no-margin-bottom" id="check-buttons">
+                  <li v-for="tag in tags">
+                    <input
+                      v-model="selectedTags"
+                      :value="tag"
+                      type="checkbox"
+                      id="toggle"
+                      class="chk-btn"
+                    /><a class="bc" for="toggle" href="jvascript:void(0)">{{
+                      tag.name
+                    }}</a>
+                  </li>
+                </ul>
+              </div>
 
-        </div>
-        </div>
-
-
-        <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
-          <div class="widget-title margin-35px-bottom">
-            <h3>Tags</h3>
-          </div>
-          <ul class="tags no-margin-bottom" id="check-buttons">
-            <li v-for="tag in tags"><input v-model="selectedTags" :value="tag" type="checkbox"><a href="jvascript:void(0)">{{ tag.name }}</a></li>
-          </ul>
-        </div>
-
-        <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
           <div class="widget-title margin-35px-bottom">
             <h3>Recent Posts</h3>
           </div>
@@ -107,7 +161,7 @@
           </div>
         </div> -->
 
-        <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
+              <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
         <div class="widget-title margin-35px-bottom">
           <h3>Instagram</h3>
         </div>
@@ -133,7 +187,7 @@
         </ul>
         </div> -->
 
-        <!-- <div class="widget">
+              <!-- <div class="widget">
         <div class="bg-img text-center padding-30px-all cover-background" data-overlay-dark="5" data-background="img/content/testimonial.jpg">
           <div class="owl-carousel owl-theme" id="testmonials-carousel">
           <div>
@@ -149,19 +203,15 @@
           </div>
         </div>
         </div> -->
-
+            </div>
+          </div>
+          <!--  end blog right-->
+        </div>
       </div>
-      </div>
-      <!--  end blog right-->
+    </section>
+    <!-- end blog section -->
 
-    </div>
-    </div>
-  </section>
-  <!-- end blog section -->
- 
- 
- 
-  <!-- <h1>Acoustic Music NYC</h1>
+    <!-- <h1>Acoustic Music NYC</h1>
 
   <v-date-picker
   v-model="date"
@@ -196,7 +246,6 @@
     </div>
     
   </div> -->
-
   </div>
 </template>
 
@@ -222,7 +271,7 @@ import moment from "moment";
 import { DatePicker } from "v-calendar";
 export default {
   mixins: [Vue2Filters.mixin],
-  data: function () {
+  data: function() {
     return {
       events: [],
       titleFilter: "",
@@ -235,7 +284,7 @@ export default {
       date: new Date(),
       formattedDate: "",
       user_id: "",
-      showNumber: 2,
+      showNumber: 10,
     };
   },
   computed: {
@@ -244,12 +293,12 @@ export default {
     },
   },
   watch: {
-    date: function () {
+    date: function() {
       this.formattedDate = moment(this.date).format("YYYY-MM-DD");
       // console.log("test");
     },
   },
-  created: function () {
+  created: function() {
     axios.get("/api/events").then((response) => {
       console.log("All Events:", response.data);
       this.events = response.data;
@@ -261,10 +310,10 @@ export default {
     });
   },
   methods: {
-    cleanTime: function (dateTime) {
+    cleanTime: function(dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
-    getByTag: function (events, selectedTags) {
+    getByTag: function(events, selectedTags) {
       // console.log("selectedTags", selectedTags);
       if (selectedTags.length === 0) {
         return events;
@@ -280,7 +329,7 @@ export default {
       setTimeout(() => (this.formattedDate = null), 500);
       console.log(this.user_id);
     },
-    toggleFavorite: function (event) {
+    toggleFavorite: function(event) {
       var params = {
         id: event.id,
       };
@@ -295,8 +344,8 @@ export default {
       //   this.errors = error.response.data.errors;
       // });
     },
-    upNumber: function () {
-      this.showNumber += 2;
+    upNumber: function() {
+      this.showNumber += 10;
       console.log(this.showNumber);
     },
   },

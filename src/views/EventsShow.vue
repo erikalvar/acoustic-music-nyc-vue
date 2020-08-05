@@ -1,42 +1,77 @@
 <template>
   <div class="events-show">
-
     <!-- start blog Section -->
     <section>
-      <div class="container">
-
+      <div class="container bg-light  border-all">
         <div class="row justify-content-center">
           <div class="col-lg-10 col-md-11">
             <!-- start content  -->
-            <h3 class="margin-15px-top font-weight-600 font-size40 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30">{{ currentEvent.title }}</h3>
-            <img v-bind:src="`${currentEvent.image_url}`" class="margin-30px-bottom" alt="..." /><br>
-            <span class="text-extra-dark-gray font-size14"><span class="font-weight-600">{{ cleanTime(currentEvent.start_time) }}</span> </span> 
-            <h3 class="margin-15px-top font-weight-600 font-size22 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30">@{{ currentEvent.venue }}</h3>
-            <h3 class="margin-15px-top font-weight-600 font-size16 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30">{{ currentEvent.venue_address }}</h3>
+            <h3
+              class="heading margin-30px-top font-weight-600 font-size40 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30"
+            >
+              {{ currentEvent.title }}
+            </h3>
+            <img
+              v-bind:src="`${currentEvent.image_url}`"
+              class="margin-30px-bottom"
+              alt="..."
+            /><br />
+            <span class="text-extra-dark-gray font-size14"
+              ><span class="font-weight-600">{{
+                cleanTime(currentEvent.start_time)
+              }}</span>
+            </span>
+            <h3
+              class="margin-15px-top font-weight-600 font-size22 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30"
+            >
+              @{{ currentEvent.venue }}
+            </h3>
+            <h3
+              class="margin-15px-top font-weight-600 font-size16 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30"
+            >
+              {{ currentEvent.venue_address }}
+            </h3>
             <p>{{ currentEvent.description }}</p>
-            <p>Tickets: <a :href="`${currentEvent.tickets_url}`">{{ currentEvent.tickets_url }}</a></p>
-            <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
+            <div v-if="currentEvent.tickets_url">
+              <p>
+                Tickets:
+                <a :href="`${currentEvent.tickets_url}`">{{
+                  currentEvent.tickets_url
+                }}</a>
+              </p>
+            </div>
+            <button
+              v-on:click="toggleFavorite()"
+              v-if="!currentEvent.favorited"
+            >
+              Favorite
+            </button>
             <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
             <div>
-              <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
+              <router-link :to="`/events/${currentEvent.id}/edit`"
+                >Edit</router-link
+              >
             </div>
-            <h6>Tags:</h6>
-            <div v-for="tag in tags">
-              <p>#{{ tag.name }}</p>
-            </div> 
-            
+
+            <div
+              class="widget margin-30px-all md-padding-20px-all shadow-theme"
+            >
+              <div class="widget-title">
+                <h6>Tags</h6>
+              </div>
+              <ul v-for="tag in tags" class="tags no-margin-bottom">
+                <li>
+                  <a href="jvascript:void(0)">{{ tag.name }}</a>
+                </li>
+              </ul>
+            </div>
 
             <!-- end content -->
-
           </div>
         </div>
       </div>
     </section>
     <!-- end blog section -->
-
-
-
-
 
     <!-- <h1>{{ currentEvent.title }}</h1>
     <p>Venue: {{ currentEvent.venue }}</p>
@@ -58,13 +93,11 @@
     <!-- <h3>Tags:</h3>
     <div v-for="tag in tags">
       <p>#{{ tag.name }}</p>
-    </div> --> 
-
+    </div> -->
   </div>
 </template>
 
-<style>
-</style>
+<style></style>
 
 <script>
 import axios from "axios";
@@ -73,7 +106,7 @@ import moment from "moment";
 // import func from "../../vue-temp/vue-editor-bridge";
 export default {
   components: {},
-  data: function () {
+  data: function() {
     return {
       message: "Welcome to Events Show",
       currentEvent: {},
@@ -82,7 +115,7 @@ export default {
       errors: [],
     };
   },
-  created: function () {
+  created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then((response) => {
       console.log(response.data);
       this.currentEvent = response.data;
@@ -92,10 +125,10 @@ export default {
     });
   },
   methods: {
-    cleanTime: function (dateTime) {
+    cleanTime: function(dateTime) {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
-    toggleFavorite: function () {
+    toggleFavorite: function() {
       var params = {
         id: this.currentEvent.id,
       };

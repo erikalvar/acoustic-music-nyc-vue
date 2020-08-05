@@ -1,6 +1,5 @@
 <template>
   <div class="signup">
-
     <section>
       <div class="container">
         <div class="row justify-content-md-center">
@@ -12,26 +11,39 @@
               </ul>
               <div class="form-group">
                 <label>Username:</label>
-                <input type="text" class="form-control" v-model="username">
+                <input type="text" class="form-control" v-model="username" />
               </div>
               <div class="form-group">
                 <label>Email:</label>
-                <input type="text" class="form-control" v-model="email">
+                <input type="text" class="form-control" v-model="email" />
               </div>
               <div class="form-group">
                 <label>Password:</label>
-                <input type="text" class="form-control" v-model="password">
+                <input
+                  type="password"
+                  class="form-control"
+                  v-model="password"
+                />
               </div>
               <div class="form-group">
                 <label>Password Confirmation:</label>
-                <input type="text" class="form-control" v-model="passwordConfirmation">
+                <input
+                  type="password"
+                  class="form-control"
+                  v-model="passwordConfirmation"
+                />
               </div>
-              <input type="submit" class="btn btn-primary margin-10px-bottom" value="Submit" />             </form>
+              <input
+                type="submit"
+                class="btn btn-primary margin-10px-bottom"
+                value="Submit"
+              />
+            </form>
           </div>
         </div>
       </div>
     </section>
-    
+
     <!-- <form v-on:submit.prevent="submit()">
       <h1>Signup</h1>
       <ul>
@@ -62,7 +74,7 @@
 import axios from "axios";
 
 export default {
-  data: function () {
+  data: function() {
     return {
       username: "",
       email: "",
@@ -72,7 +84,7 @@ export default {
     };
   },
   methods: {
-    submit: function () {
+    submit: function() {
       var params = {
         username: this.username,
         email: this.email,
