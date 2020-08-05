@@ -11,8 +11,8 @@
 /* .tag-btn {
   border-radius: 5px;
   background: lightblue;
-  margin: 5px; */
-}
+  margin: 5px;
+} */
 .chk-btn {
   offset-position: -20px;
 }
@@ -100,9 +100,12 @@
 }
 .btn {
   background-color: #004064;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   border: none;
 }
 .ltgrey {
   background-color: lightgrey;
+}
+.navbar-header {
+  text-size-adjust: 60px;
 }

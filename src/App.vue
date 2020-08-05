@@ -19,7 +19,7 @@
         </div> -->
         <!-- end top search -->
 
-        <div class="container no-margin-bottom colorStuff">
+        <div class="container no-margin-bottom colorStuff box-shadow">
           <div class="row align-items-center">
             <div class="col-md-12 ">
               <div class="menu_area">
@@ -28,9 +28,9 @@
                     <!-- start logo -->
                     <router-link
                       to="/"
-                      class="navbar-brand width-150px sm-width-180px xs-width-150px"
+                      class="navbar-brand width-300px sm-width-200px xs-width-150px"
                     >
-                      <img id="logo" src="/img/demologo.png " alt="logo" />
+                      <img id="logo" src="/img/AMNLogo.png " alt="logo" />
                     </router-link>
                     <!-- end logo -->
                   </div>

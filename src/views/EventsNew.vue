@@ -5,7 +5,7 @@
         <div class="row">
           <!--  start blog left-->
           <div
-            class="col-lg-8 col-md-12 sm-margin-50px-bottom border-all pagebox padding-20px-bottom"
+            class="col-lg-8 col-md-12 sm-margin-50px-bottom border-all box-shadow-light pagebox padding-20px-bottom"
           >
             <form v-on:submit.prevent="createEvent">
               <h1 class="heading magin-20px-top">Submit an Event</h1>

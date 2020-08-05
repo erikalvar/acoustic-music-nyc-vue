@@ -3,7 +3,7 @@
     <section class="background">
       <div class="container">
         <div class="row justify-content-md-center">
-          <div class="col-6 border-all pagebox">
+          <div class="col-6 border-all box-shadow-light pagebox">
             <form v-on:submit.prevent="submit">
               <h3 class="title margin-10px-top">Create Profile</h3>
               <ul>
@@ -33,11 +33,9 @@
                   v-model="passwordConfirmation"
                 />
               </div>
-              <input
-                type="submit"
-                class="btn butn margin-10px-bottom"
-                value="Submit"
-              />
+              <div class="margin-10px-bottom">
+                <input type="submit" class="btn butn" value="Submit" />
+              </div>
             </form>
           </div>
         </div>

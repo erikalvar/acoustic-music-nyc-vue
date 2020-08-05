@@ -7,7 +7,7 @@
           <!--  start blog left-->
           <div class="col-lg-8 col-md-12 sm-margin-50px-bottom centerStuff">
             <div
-              class="card margin-10px-bottom border-width-1 bg-light rounded-0 "
+              class="card margin-10px-bottom box-shadow-light border-width-1 bg-light rounded-0 "
               v-for="event in filterBy(
                 filterBy(filteredByTag, titleFilter),
                 formattedDate
@@ -106,10 +106,10 @@
                     </button>
                   </div>
 
-                  <div class="widget-list no-margin text-center">
+                  <div class="widget-list margin-10px-top text-center">
                     <v-date-picker v-model="date" mode="single" is-inline />
                     <button
-                      class="btn btn-primary text-center"
+                      class="btn btn-primary text-center margin-10px-top"
                       v-on:click="resetDate"
                     >
                       Reset Calendar

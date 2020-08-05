@@ -7,7 +7,7 @@
           <div class="col-lg-6 col-md-4">
             <!-- start content  -->
             <div
-              class="card card-event heading padding-40px-all xs-padding-30px-all margin-30px-bottom margin-30px-top border-all"
+              class="card card-event heading padding-40px-all xs-padding-30px-all margin-30px-bottom margin-30px-top border-all box-shadow-light"
             >
               <h3 class="heading border-bottom padding-10px-bottom">
                 Account Info
@@ -49,7 +49,7 @@
 
             <div class="col-lg-12 col-md-12 sm-margin-50px-bottom">
               <div
-                class="card card-event margin-20px-bottom border-all rounded-0"
+                class="card card-event margin-20px-bottom border-all box-shadow-light rounded-0"
                 v-for="favoriteEvent in favoritedEvents"
               >
                 <div class="row no-gutters list-blog">
