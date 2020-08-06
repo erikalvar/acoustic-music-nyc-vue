@@ -1,18 +1,20 @@
-import Vue from 'vue';
-import App from './App.vue';
-import router from './router';
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 import axios from "axios";
-import { Datetime } from 'vue-datetime';
-import 'vue-datetime/dist/vue-datetime.css';
-import VCalendar from 'v-calendar';
+import { Datetime } from "vue-datetime";
+import "vue-datetime/dist/vue-datetime.css";
+import VCalendar from "v-calendar";
 // import "v-calendar/lib/v-calendar.min.css";
 
 Vue.use(Datetime);
-Vue.component('datetime', Datetime);
-Vue.use(VCalendar, {
-});
+Vue.component("datetime", Datetime);
+Vue.use(VCalendar, {});
 
-axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
+axios.defaults.baseURL =
+  process.env.NODE_ENV === "development"
+    ? "https://immense-basin-79193.herokuapp.com/"
+    : "/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
@@ -23,5 +25,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app');
+  render: (h) => h(App),
+}).$mount("#app");
