@@ -30,7 +30,7 @@
                       to="/"
                       class="navbar-brand width-300px sm-width-200px xs-width-150px"
                     >
-                      <img id="logo" src="/img/AMNLogo.png " alt="logo" />
+                      <img id="logo" src="/img/AMNLogo2.png " alt="logo" />
                     </router-link>
                     <!-- end logo -->
                   </div>
@@ -75,16 +75,6 @@
     </header>
     <!-- end header section -->
 
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link v-if="isLoggedIn()" to="/events/new">Submit Event</router-link>
-      <router-link v-if="!isLoggedIn()" to="/signup">Signup</router-link> |
-      <router-link v-if="!isLoggedIn()" to="/login">Login</router-link> 
-      <router-link v-if="isLoggedIn()" to="/logout">Logout</router-link> |
-      <router-link v-if="isLoggedIn()" v-bind:to="`/users/${getUserId()}`">User Profile</router-link>
-    </div> -->
-
     <router-view />
 
     <!-- start footer section -->
@@ -110,16 +100,6 @@
                   <li>
                     <a href="javascript:void(0)"
                       ><i class="fab fa-instagram"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="fab fa-linkedin-in"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0)"
-                      ><i class="fab fa-dribbble"></i
                     ></a>
                   </li>
                 </ul>

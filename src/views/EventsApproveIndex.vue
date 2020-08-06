@@ -25,69 +25,43 @@
                 </div>
                 <div class="col-md-7">
                   <div class="card-body">
-                    <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-                    <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
                     <h5>
                       <router-link v-bind:to="`/events/${event.id}`">{{
                         event.title
                       }}</router-link>
                     </h5>
                     <p>@{{ event.venue }}</p>
-
                     <div class="meta">
                       <span class="date">{{
                         cleanTime(event.start_time)
                       }}</span>
-                      <span class="author">
+                      <div class="btn-group" role="group">
                         <div>
-                          <router-link :to="`/events/${event.id}/edit`"
+                          <router-link
+                            class="btn butn"
+                            :to="`/events/${event.id}/edit`"
                             >Edit</router-link
                           >
                         </div>
-                        <button v-on:click="approveEvent(event)">
-                          Approve Event
+                        <button
+                          class="btn butn"
+                          v-on:click="approveEvent(event)"
+                        >
+                          Approve
                         </button>
                         <br />
-                        <button v-on:click="destroyEvent(event)">
-                          Delete Event
+                        <button
+                          class="btn butn"
+                          v-on:click="destroyEvent(event)"
+                        >
+                          Delete
                         </button>
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- start pager  -->
-            <div class="margin-50px-top">
-              <div
-                class="pagination text-small text-uppercase text-extra-dark-gray"
-              >
-                <ul>
-                  <li>
-                    <a href="javascript:void(0);"
-                      ><i
-                        class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"
-                      ></i>
-                      Prev</a
-                    >
-                  </li>
-                  <li class="active"><a href="javascript:void(0);">1</a></li>
-                  <li><a href="javascript:void(0);">2</a></li>
-                  <li><a href="javascript:void(0);">3</a></li>
-                  <li>
-                    <a href="javascript:void(0);"
-                      >Next
-                      <i
-                        class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"
-                      ></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!-- end pager  -->
           </div>
           <!--  end blog left-->
 
@@ -143,40 +117,6 @@
         </div>
       </div>
     </section>
-    <!-- end blog section -->
-
-    <!-- <h1>Approve Events</h1>
-
-    <div>
-      <input type="text" class="form-control" v-model="titleFilter" placeholder="Search" list="titles">
-    </div>
-
-    <div v-for="tag in tags">
-      <input type="checkbox" id="tag.id" :value="tag" v-model="selectedTags">
-      <label for="tag">#{{ tag.name }}</label>
-    </div>
-   
-    <div v-for="event in filterBy(filteredByTag, titleFilter)">
-      
-      <h1>{{ event.title }}</h1>
-      <p>Venue: {{ event.venue }}</p>
-      <p>Venue Address: {{ event.venue_address }}</p>
-      <p>Start: {{ cleanTime(event.start_time) }}</p>
-      <p>End: {{ cleanTime(event.end_time) }}</p>
-      <p>Description: {{ event.description }}</p>
-      <img v-bind:src="`${event.image_url}`">
-      <p>Tickets: {{ event.tickets_url }}</p>
-
-      <h3>Tags:</h3>
-      <p>{{ event.tags }}</p>
-
-      <div>
-        <router-link :to="`/events/${event.id}/edit`">Edit</router-link>
-      </div>
-        <button v-on:click="approveEvent(event)">Approve Event</button>  <br>
-        <button v-on:click="destroyEvent(event)">Delete Event</button>    
-      
-    </div> -->
   </div>
 </template>
 

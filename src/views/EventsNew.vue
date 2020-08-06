@@ -14,9 +14,6 @@
                 approval. Only after it is approved will it show up on the home
                 page.
               </p>
-              <ul>
-                <li class="text-danger" v-for="error in errors">{{ error }}</li>
-              </ul>
               <div class="form-group">
                 <label>Title:</label>
                 <input
@@ -67,7 +64,7 @@
                   type="text"
                   class="form-control"
                   v-model="newEventTicketsUrl"
-                  placeholder="optional"
+                  placeholder="optional; include https://"
                 />
               </div>
               <div class="form-group">
@@ -76,6 +73,7 @@
                   type="datetime"
                   v-model="newEventStartTime"
                   use12-hour
+                  :week-start="7"
                 ></datetime>
               </div>
               <div class="form-group">
@@ -84,10 +82,69 @@
                   type="datetime"
                   v-model="newEventEndTime"
                   use12-hour
+                  :week-start="7"
                 ></datetime>
               </div>
-              <input type="submit" class="btn butn" value="Submit" />
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
+              <input
+                class="btn butn"
+                value="Submit"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              />
             </form>
+          </div>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModalCenter"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">
+                    Before You Submit
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Once an event is submitted it is sent to moderators for
+                  approval. You will not have the ability to edit the event so
+                  check to see that everything is correct before submitting. If
+                  there are any errors or changes needed later send a message to
+                  the moderators and they will edit the event.
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn butn" data-dismiss="modal">
+                    Return to Form
+                  </button>
+                  <button
+                    v-on:click="createEvent"
+                    value="Submit"
+                    type="button"
+                    class="btn butn"
+                    data-dismiss="modal"
+                    data-backdrop="keyboard"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
           <!--  end blog left-->
 
@@ -116,58 +173,6 @@
         </div>
       </div>
     </section>
-
-    <!-- <form v-on:submit.prevent="createEvent">
-      <h1>Submit an Event</h1>
-      <p>Once an event is created it will be sent to moderators for approval. Only after it is approved will it show up on the home page.</p>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Title:</label>
-        <input type="text" class="form-control" v-model="newEventTitle" placeholder="band name, event name, etc.">
-      </div>
-      <div class="form-group">
-        <label>Description:</label>
-        <textarea v-model="newEventDescription" placeholder="Add a couple sentences about the event/band"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Venue:</label>
-        <input type="text" class="form-control" v-model="newEventVenue" placeholder="required">
-      </div>
-      <div class="form-group">
-        <label>Venue Address:</label>
-        <input ref="autocomplete" 
-        placeholder="if livestream write Internet" 
-        class="search-location"
-        onfocus="value = ''" 
-        type="text" />
-        
-      </div>
-      <div class="form-group">
-        <label>Image Url:</label>
-        <input type="text" class="form-control" v-model="newEventImageUrl" placeholder="optional but suggested. Square photo if possible">
-      </div>
-      <div class="form-group">
-        <label>Tickets Url:</label>
-        <input type="text" class="form-control" v-model="newEventTicketsUrl" placeholder="optional">
-      </div>
-      <div class="form-group">
-        <label>Start Time:</label>
-        <datetime type="datetime" v-model="newEventStartTime" use12-hour></datetime>
-      </div>
-      <div class="form-group">
-        <label>End Time:</label>
-        <datetime type="datetime" v-model="newEventEndTime" use12-hour></datetime>
-      </div>
-      <input type="submit" class="btn btn-primary" value="Submit" />
-    </form>
-    <br>
-    
-    <div v-for="tag in tags">
-      <input type="checkbox" id="tag" :value="tag.id" v-model="selectedTags">
-      <label for="tag">#{{ tag.name }}</label>
-    </div> -->
   </div>
 </template>
 
@@ -196,7 +201,6 @@ export default {
   created: function() {
     axios.get("/api/tags").then((response) => {
       this.tags = response.data;
-      // console.log(this.tags);
     });
   },
   mounted() {
@@ -207,7 +211,6 @@ export default {
     this.autocomplete.addListener("place_changed", () => {
       let place = this.autocomplete.getPlace().formatted_address;
       this.place = place;
-      console.log(place);
     });
   },
   methods: {

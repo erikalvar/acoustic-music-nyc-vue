@@ -9,73 +9,84 @@
             <div class="col-lg-10 col-md-11">
               <!-- start content  -->
 
-              <h5
+              <h2
                 class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30 heading"
               >
-                What is Acoustic Music NYC and how did it come to be
-              </h5>
+                How to Use
+              </h2>
               <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque
-                inventore veritatis.
+                This website is set up to for use without creating a profile. On
+                the home page you can see all the events starting on the current
+                date. Hit the "Show More" button on the bottom of the page to
+                see more events. Click on the event title or picture to see more
+                details about the event including a description, ticket info,
+                and tags.
               </p>
 
               <p>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum. Sed ut
-                perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae.
+                The events on the home page can be filtered via the search bar
+                (looks at event titles and description), date, and tags.
               </p>
 
               <p>
-                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                consectetur, adipisci velit, sed quia non numquam eius modi
-                tempora incidunt ut labore et dolore magnam aliquam quaerat
-                voluptatem.
+                Once a profile is created and logged in a user can submit an
+                event by clicking on the link in the navigation bar and favorite
+                events by clicking on the star item and turning it gold. To see
+                all of your favorited events click on your "User Profile" in the
+                top right corner of the page
               </p>
 
-              <h5>Some goals:</h5>
+              <h5>Acoustic Music NYC's goals:</h5>
               <ul class="list-style2 margin-30px-bottom">
-                <li><i class="ti-check"></i>Nemo enim ipsam voluptatem</li>
-                <li><i class="ti-check"></i>Duis aute irure dolor</li>
-                <li><i class="ti-check"></i>Ut enim ad minim veniam</li>
-                <li><i class="ti-check"></i>Excepteur sint occaecat</li>
+                <li>
+                  <i class="ti-check"></i>Provide an up-to-date calendar of all
+                  the acoustic music events in NYC
+                </li>
+                <li>
+                  <i class="ti-check"></i>Provide an easy and convenient way for
+                  bands/venues to submit events
+                </li>
+                <li><i class="ti-check"></i>Showcase local bands and venues</li>
+                <li>
+                  <i class="ti-check"></i>Continue to grow and add features
+                </li>
               </ul>
 
-              <p class="font-size16">
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum. Sed ut
-                perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae
-                vitae dicta sunt explicabo.
-              </p>
+              <h2
+                class="margin-15px-top font-weight-600 font-size32 sm-font-size28 xs-font-size24 line-height-40 xs-line-height-30 heading"
+              >
+                Backstory
+              </h2>
               <div class="row align-items-center">
                 <div class="col-sm-5">
-                  <img src="/img/profilepic.jpg" alt="" />
+                  <img src="/img/Tony-Trischka-Show.jpg" alt="" />
                 </div>
                 <div class="col-sm-7">
                   <p>
-                    ut perspiciatis unde omnis iste natus error sit voluptatem
-                    accusantium doloremque laudantium, totam rem aperiam, eaque
-                    ipsa quae ab illo inventore veritatis et quasi architecto
-                    beatae vitae dicta sunt explicabo. Nemo enim ipsam
-                    voluptatem quia voluptas.
+                    This web application is the capstone project of my time at
+                    the Actualize coding bootcamp. When the coronavirus pandemic
+                    hit NYC and the entire city shut down my packed calendar of
+                    summer shows and tours unravelled as the cancellations
+                    rolled in.
                   </p>
                   <p>
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat laborum.
+                    After a couple weeks I decided to use this free time,
+                    something a freelance musician rarely has, to study a
+                    previous interest, software development. Three months of
+                    intensive coding and I have this first project complete.
                   </p>
                 </div>
               </div>
               <p class="margin-50px-bottom">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore.
+                If you'd like to follow along as I continue to grow and build as
+                a software developer or check out my music please visit
+                <a
+                  rel="nofollow"
+                  href="http://www.erikalvar.com"
+                  target="_blank"
+                  >erikalvar.com</a
+                >.
               </p>
-
               <!-- end content -->
             </div>
           </div>
@@ -84,8 +95,5 @@
       <!-- end blog section -->
     </div>
     <!-- end main-wrapper section -->
-
-    <!-- <h1>About Us</h1>
-    <p>Acoustic Music NYC was created to...</p> -->
   </div>
 </template>

@@ -65,9 +65,6 @@
                   </div>
                   <div class="col-md-7">
                     <div class="card-body">
-                      <!-- <span class="category"><a href="#!">Adventure</a></span> -->
-
-                      <!-- <h5><a href="standard-post.html">{{ event.title }}</a></h5> -->
                       <h5>
                         <router-link
                           v-bind:to="`/events/${favoriteEvent.id}`"
@@ -93,46 +90,13 @@
                   </div>
                 </div>
               </div>
-
-              <!-- start pager  -->
-
-              <!-- end pager  -->
             </div>
-
             <!-- end content -->
           </div>
         </div>
       </div>
     </section>
     <!-- end blog section -->
-
-    <!-- <p>Username: {{ user.username }}</p>
-  <p>Email: {{ user.email }}</p>
-
-  <div>
-    <router-link :to="`/users/${user.id}/edit`">Edit Profile</router-link>
-  </div>
-
-  <div>
-    <router-link v-if="user.moderator==true" to="/events/approve">Approve Events</router-link>      
-  </div>
-
-  <div>
-    <h3>Favorited Events</h3>
-    <div v-for="favoriteEvent in favoritedEvents">
-    <h3>{{ favoriteEvent.title }}</h3>
-    <p>{{ favoriteEvent.venue }}</p>
-    <p>{{ cleanTime(favoriteEvent.start_time) }}</p>
-    <router-link v-bind:to="`/events/${favoriteEvent.id}`">Show Info</router-link>
-    <br>
-    <button v-on:click="toggleFavorite(favoriteEvent)">Unfavorite</button>
-     
-
-    
-
-    
-    </div>
-  </div> -->
   </div>
 </template>
 
@@ -151,7 +115,6 @@ export default {
       message: "Welcome to Events Show",
       user: {},
       favoritedEvents: [],
-      // favoritedEventIds: [],
     };
   },
   created: function() {
@@ -163,11 +126,6 @@ export default {
       this.favoritedEvents = test.sort((a, b) =>
         a.start_time.localeCompare(b.start_time)
       );
-      // console.log(this.favoritedEvents);
-
-      // console.log(this.favoritedEvents);
-      // this.favoritedEventIds = response.data.favorites;
-      // console.log(this.favoritedEventIds);
     });
   },
   methods: {
@@ -190,17 +148,10 @@ export default {
           )
         )
         .catch((error) => {
-          console.log(error.response.data.errors);
+          // console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
-    //   removeFavorite: function (favoriteEvent) {
-    //     console.log(favoriteEvent.id);
-    //     const favoriteId = this.user.favorites.id.filter(
-    //       this.user.favorites.id === favoriteEvent.id
-    //     );
-    //     console.log(favoriteId);
-    //   },
   },
 };
 </script>

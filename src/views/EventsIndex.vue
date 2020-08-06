@@ -7,7 +7,7 @@
           <!--  start blog left-->
           <div class="col-lg-8 col-md-12 sm-margin-50px-bottom centerStuff">
             <div
-              class="card margin-10px-bottom box-shadow-light border-width-1 bg-light rounded-0 "
+              class=" margin-10px-bottom box-shadow-light border-width-1 bg-light rounded-0 "
               v-for="event in filterBy(
                 filterBy(filteredByTag, titleFilter),
                 formattedDate
@@ -18,12 +18,6 @@
                   class="row no-gutters list-blog card-event no-padding no-margin"
                 >
                   <div class="col-md-5">
-                    <!-- <div
-                      class="bg-img cover-background h-100 min-height-150"
-                      data-overlay-dark="0"
-                      :data-background="`${event.image_url}`"
-                      :style="`background-image: url(${event.image_url});`"
-                    ></div> -->
                     <router-link v-bind:to="`/events/${event.id}`">
                       <div
                         class="bg-img cover-background h-100 min-height-150"
@@ -109,7 +103,7 @@
                   <div class="widget-list margin-10px-top text-center">
                     <v-date-picker v-model="date" mode="single" is-inline />
                     <button
-                      class="btn btn-primary text-center margin-10px-top"
+                      class="btn butn text-center margin-10px-top"
                       v-on:click="resetDate"
                     >
                       Reset Calendar
@@ -121,7 +115,7 @@
               <div
                 class="widget padding-30px-all md-padding-20px-all shadow-theme"
               >
-                <div class="widget-title margin-35px-bottom">
+                <!-- <div class="widget-title margin-35px-bottom">
                   <h3 class="heading">Tags</h3>
                 </div>
                 <ul class="tags no-margin-bottom" id="check-buttons">
@@ -136,7 +130,21 @@
                       tag.name
                     }}</a>
                   </li>
-                </ul>
+                </ul> -->
+                <div class="widget-title margin-20px-bottom">
+                  <h3 class="heading">Select Tags</h3>
+                </div>
+                <div class="widget-title margin-20px-bottom">
+                  <div v-for="tag in tags">
+                    <input
+                      type="checkbox"
+                      id="toggle"
+                      :value="tag"
+                      v-model="selectedTags"
+                    />
+                    <label for="tag">#{{ tag.name }}</label>
+                  </div>
+                </div>
               </div>
 
               <!-- <div class="widget padding-30px-all md-padding-20px-all shadow-theme">
@@ -258,18 +266,15 @@ export default {
   watch: {
     date: function() {
       this.formattedDate = moment(this.date).format("YYYY-MM-DD");
-      // console.log("test");
     },
   },
   created: function() {
     axios.get("/api/events").then((response) => {
       console.log("All Events:", response.data);
       this.events = response.data;
-      // console.log(this.events.first.favoritesInfo);
     });
     axios.get("/api/tags").then((response) => {
       this.tags = response.data;
-      // console.log(this.tags);
     });
   },
   methods: {
@@ -277,7 +282,6 @@ export default {
       return moment(dateTime).format("dddd, MMMM Do h:mm A");
     },
     getByTag: function(events, selectedTags) {
-      // console.log("selectedTags", selectedTags);
       if (selectedTags.length === 0) {
         return events;
       }
@@ -288,7 +292,6 @@ export default {
     },
     resetDate() {
       this.date = new Date();
-      // this.formattedDate = null;
       setTimeout(() => (this.formattedDate = null), 500);
       console.log(this.user_id);
     },
@@ -302,10 +305,6 @@ export default {
           console.log(response.data, "favorite toggled");
           event.favorited = response.data.favorited;
         });
-      // .then.catch((error) => {
-      //   console.log(error.response.data.errors);
-      //   this.errors = error.response.data.errors;
-      // });
     },
     upNumber: function() {
       this.showNumber += 10;

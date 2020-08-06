@@ -13,10 +13,10 @@
             </h3>
             <img
               v-bind:src="`${currentEvent.image_url}`"
-              class="center margin-30px-bottom"
+              class="center margin-10px-bottom"
               alt="..."
             /><br />
-            <span class="text-extra-dark-gray font-size14"
+            <span class="text-extra-dark-gray font-size18"
               ><span class="font-weight-600">{{
                 cleanTime(currentEvent.start_time)
               }}</span>
@@ -27,7 +27,7 @@
               @{{ currentEvent.venue }}
             </h3>
             <h3
-              class="margin-15px-top font-weight-600 font-size16 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30"
+              class="margin-15px-top font-weight-600 font-size18 sm-font-size28 xs-font-size24 line-height-20 xs-line-height-30"
             >
               {{ currentEvent.venue_address }}
             </h3>
@@ -49,20 +49,15 @@
               <i class="fas fa-star"></i>
             </button>
             <button class="btnf" v-on:click="toggleFavorite()" v-else>
-              <i class="fas fa-star"></i>
+              <i class="fas fa-star margin-20px-bottom"></i>
             </button>
 
-            <div
-              class="widget margin-30px-all md-padding-20px-all shadow-theme"
-            >
-              <div class="widget-title">
-                <h6>Tags</h6>
+            <div>
+              <div>
+                <div v-for="tag in tags">
+                  <span for="tag">#{{ tag.name }}</span>
+                </div>
               </div>
-              <ul v-for="tag in tags" class="tags no-margin-bottom">
-                <li>
-                  <a href="jvascript:void(0)">{{ tag.name }}</a>
-                </li>
-              </ul>
             </div>
             <div class="right">
               <router-link :to="`/events/${currentEvent.id}/edit`"
@@ -76,28 +71,6 @@
       </div>
     </section>
     <!-- end blog section -->
-
-    <!-- <h1>{{ currentEvent.title }}</h1>
-    <p>Venue: {{ currentEvent.venue }}</p>
-    <p>Venue Address: {{ currentEvent.venue_address }}</p>
-    <p>Satrt: {{ cleanTime(currentEvent.start_time) }}</p>
-    <p>End: {{ cleanTime(currentEvent.end_time) }}</p>
-    <p>Description: {{ currentEvent.description }}</p>
-    <img v-bind:src="`${currentEvent.image_url}`">
-    <p>Tickets: {{ currentEvent.tickets_url }}</p>
-    <div>
-      <router-link :to="`/events/${currentEvent.id}/edit`">Edit</router-link>
-    </div>
-    <br>
-    <button v-on:click="toggleFavorite()" v-if="!currentEvent.favorited">Favorite</button>
-    <button v-on:click="toggleFavorite()" v-else>Unfavorite</button>
-    <button v-on:click="favoriteEvent">Favorite</button>
-    <button v-on:click="unFavoriteEvent">Un-Favorite</button> -->
-
-    <!-- <h3>Tags:</h3>
-    <div v-for="tag in tags">
-      <p>#{{ tag.name }}</p>
-    </div> -->
   </div>
 </template>
 
@@ -121,11 +94,11 @@ export default {
   },
   created: function() {
     axios.get(`/api/events/${this.$route.params.id}`).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       this.currentEvent = response.data;
       this.tags = response.data.tags;
       this.address = response.formatted_address;
-      console.log(this.tags);
+      // console.log(this.tags);
     });
   },
   methods: {

@@ -37,9 +37,9 @@
                   v-model="user.passwordConfirmation"
                 />
               </div>
-              <input type="submit" class="btn btn-primary" value="Submit" />
+              <input type="submit" class="btn butn" value="Submit" />
               <button
-                class="btn btn-outline-danger btn-block margin-10px-bottom"
+                class="btn butn btn-outline-danger btn-block margin-10px-bottom margin-10px-top"
                 v-on:click="destroyUser()"
               >
                 Delete User
@@ -49,31 +49,6 @@
         </div>
       </div>
     </section>
-
-    <!-- <form v-on:submit.prevent="editUser">
-      <h1>Edit Profile</h1>
-      <ul>
-        <li class="text-danger" v-for="error in errors">{{ error }}</li>
-      </ul>
-      <div class="form-group">
-        <label>Username:</label>
-        <input type="text" class="form-control" v-model="user.username">
-      </div>
-      <div class="form-group">
-        <label>Email:</label>
-        <input type="text" class="form-control" v-model="user.email">
-      </div>
-      <div class="form-group">
-        <label>Password:</label>
-        <input type="text" class="form-control" v-model="user.password">
-      </div>
-      <div class="form-group">
-        <label>Password Confirmation:</label>
-        <input type="text" class="form-control" v-model="user.passwordConfirmation">
-      </div>
-      <input type="submit" class="btn btn-primary" value="Submit" /> <br>
-    </form>
-    <button v-on:click="destroyUser()">Delete User</button> -->
   </div>
 </template>
 
@@ -90,7 +65,7 @@ export default {
   },
   created: function() {
     axios.get(`/api/users/${this.$route.params.id}`).then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       this.user = response.data;
     });
   },
@@ -109,7 +84,7 @@ export default {
           this.$router.push(`/users/${response.data.id}`);
         })
         .catch((error) => {
-          console.log(error.response.data.errors);
+          // console.log(error.response.data.errors);
           this.errors = error.response.data.errors;
         });
     },
@@ -117,6 +92,8 @@ export default {
       if (confirm("Are you sure you want to delete user?")) {
         axios.delete(`/api/users/${this.user.id}`).then((response) => {
           console.log("User successfully deleted", response.data);
+          localStorage.removeItem("jwt");
+          localStorage.removeItem("user_id");
           this.$router.push("/");
         });
       }

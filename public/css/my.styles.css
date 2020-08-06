@@ -109,3 +109,22 @@
 .navbar-header {
   text-size-adjust: 60px;
 }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.fevent-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.fevent-enter-active,
+.fevent-leave-active {
+  transition: all 1s;
+}
+.fevent-enter, .fevent-leave-to /* .event-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
