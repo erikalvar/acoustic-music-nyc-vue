@@ -12,9 +12,7 @@ Vue.component("datetime", Datetime);
 Vue.use(VCalendar, {});
 
 axios.defaults.baseURL =
-  process.env.NODE_ENV === "production"
-    ? "https://immense-basin-79193.herokuapp.com/"
-    : "/";
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
