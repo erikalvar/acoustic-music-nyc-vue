@@ -54,6 +54,7 @@
                   type="datetime"
                   v-model="event.start_time"
                   use12-hour
+                  :week-start="7"
                 ></datetime>
               </div>
               <div class="form-group">
@@ -62,6 +63,7 @@
                   type="datetime"
                   v-model="event.end_time"
                   use12-hour
+                  :week-start="7"
                 ></datetime>
               </div>
               <input

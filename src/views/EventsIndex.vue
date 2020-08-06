@@ -1,5 +1,7 @@
 <template>
   <div class="events-index">
+    <!-- modal -->
+
     <!-- start blog Section -->
     <section class="background">
       <div class="container">
@@ -115,22 +117,6 @@
               <div
                 class="widget padding-30px-all md-padding-20px-all shadow-theme"
               >
-                <!-- <div class="widget-title margin-35px-bottom">
-                  <h3 class="heading">Tags</h3>
-                </div>
-                <ul class="tags no-margin-bottom" id="check-buttons">
-                  <li v-for="tag in tags" class="tag-btn">
-                    <input
-                      v-model="selectedTags"
-                      :value="tag"
-                      type="checkbox"
-                      id="toggle"
-                      class="chk-btn"
-                    /><a class="bc" for="toggle" href="jvascript:void(0)">{{
-                      tag.name
-                    }}</a>
-                  </li>
-                </ul> -->
                 <div class="widget-title margin-20px-bottom">
                   <h3 class="heading">Select Tags</h3>
                 </div>

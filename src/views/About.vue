@@ -78,8 +78,9 @@
                 </div>
               </div>
               <p class="margin-50px-bottom">
-                If you'd like to follow along as I continue to grow and build as
-                a software developer or check out my music please visit
+                If you'd like to follow along as I continue to learn, grow, and
+                build more projects as a software developer or check out my
+                music please visit
                 <a
                   rel="nofollow"
                   href="http://www.erikalvar.com"

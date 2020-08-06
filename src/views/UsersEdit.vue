@@ -6,9 +6,6 @@
           <div class="col-6 border-all pagebox">
             <form v-on:submit.prevent="editUser">
               <h3 class="title margin-10px-top">Edit Profile</h3>
-              <ul>
-                <li class="text-danger" v-for="error in errors">{{ error }}</li>
-              </ul>
               <div class="form-group">
                 <label>Username:</label>
                 <input
@@ -37,6 +34,9 @@
                   v-model="user.passwordConfirmation"
                 />
               </div>
+              <ul>
+                <li class="text-danger" v-for="error in errors">{{ error }}</li>
+              </ul>
               <input type="submit" class="btn butn" value="Submit" />
               <button
                 class="btn butn btn-outline-danger btn-block margin-10px-bottom margin-10px-top"
