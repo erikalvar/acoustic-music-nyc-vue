@@ -30,7 +30,7 @@
                       to="/"
                       class="navbar-brand width-300px sm-width-200px xs-width-150px"
                     >
-                      <img id="logo" src="/img/AMNLogo2.png " alt="logo" />
+                      <img id="logo" src="/img/AMNLogoBeta.png " alt="logo" />
                     </router-link>
                     <!-- end logo -->
                   </div>
