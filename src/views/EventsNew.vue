@@ -42,11 +42,10 @@
               <div class="form-group">
                 <label>Venue Address:</label>
                 <input
-                  ref="autocomplete"
-                  placeholder="if livestream write Internet"
-                  class="search-location"
-                  onfocus="value = ''"
                   type="text"
+                  class="form-control"
+                  v-model="newEventVenueAddress"
+                  placeholder="required"
                 />
               </div>
               <div class="form-group">
@@ -188,7 +187,7 @@ export default {
       newEventTitle: "",
       newEventDescription: "",
       newEventVenue: "",
-      newEventVenueAddress: this.place,
+      newEventVenueAddress: "",
       newEventImageUrl: "",
       newEventTicketsUrl: "",
       newEventStartTime: "",
@@ -204,14 +203,14 @@ export default {
     });
   },
   mounted() {
-    this.autocomplete = new google.maps.places.Autocomplete(
-      this.$refs.autocomplete,
-      { types: ["geocode"] }
-    );
-    this.autocomplete.addListener("place_changed", () => {
-      let place = this.autocomplete.getPlace().formatted_address;
-      this.place = place;
-    });
+    // this.autocomplete = new google.maps.places.Autocomplete(
+    //   this.$refs.autocomplete,
+    //   { types: ["geocode"] }
+    // );
+    // this.autocomplete.addListener("place_changed", () => {
+    //   let place = this.autocomplete.getPlace().formatted_address;
+    //   this.place = place;
+    // });
   },
   methods: {
     createEvent: function() {
@@ -219,7 +218,7 @@ export default {
         title: this.newEventTitle,
         description: this.newEventDescription,
         venue: this.newEventVenue,
-        venue_address: this.place,
+        venue_address: this.newEventVenueAddress,
         image_url: this.newEventImageUrl,
         tickets_url: this.newEventTicketsUrl,
         start_time: this.newEventStartTime,
@@ -240,9 +239,9 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    handleInput: function(input) {
-      this.newEventVenueAddress = input;
-    },
+    // handleInput: function(input) {
+    //   this.newEventVenueAddress = input;
+    // },
   },
 };
 </script>
